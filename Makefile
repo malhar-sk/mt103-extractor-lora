@@ -4,7 +4,7 @@ OLLAMA_URL ?= http://127.0.0.1:21434
 LLAMA_CPP ?= third_party/llama.cpp
 export OMP_NUM_THREADS ?= 1
 
-.PHONY: help venv up down data test eval eval-base eval-api eval-ft train merge gguf serve llama-cpp bench
+.PHONY: help venv venv-train up down data test eval eval-base eval-api eval-ft train merge gguf serve llama-cpp bench
 
 help:
 	@grep -E '^[a-z-]+:' Makefile | cut -d: -f1 | tr '\n' ' '; echo
@@ -12,6 +12,9 @@ help:
 venv:
 	python3.11 -m venv .venv || python -m venv .venv
 	$(PY) -m pip install -q -r requirements.txt
+
+venv-train: venv
+	$(PY) -m pip install -q -r requirements-train.txt
 
 up:                      ## start Ollama + API, pull the base model
 	docker compose up -d --build

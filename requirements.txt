@@ -1,0 +1,8 @@
+# Core (data, eval, API, tests): enough for `make data test eval-base serve`
+pydantic==2.14.4
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+httpx==0.28.1
+pytest==9.2.0
+PyYAML==6.0.4
+matplotlib==3.11.2
