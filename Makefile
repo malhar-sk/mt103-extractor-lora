@@ -4,7 +4,7 @@ OLLAMA_URL ?= http://127.0.0.1:21434
 LLAMA_CPP ?= third_party/llama.cpp
 export OMP_NUM_THREADS ?= 1
 
-.PHONY: help venv venv-train up down data test eval eval-base eval-api eval-ft train merge gguf serve llama-cpp bench
+.PHONY: help venv venv-train up down data data-ood test eval eval-base eval-api eval-ft eval-ood analyze train merge gguf serve llama-cpp bench
 
 help:
 	@grep -E '^[a-z-]+:' Makefile | cut -d: -f1 | tr '\n' ' '; echo
@@ -26,6 +26,9 @@ down:
 data:                    ## regenerate the synthetic dataset (deterministic, seed 103)
 	$(PY) data/generate.py --n 3000 --seed 103
 
+data-ood:                ## regenerate the SYNTHETIC out-of-distribution test set (100, seed 20261123)
+	$(PY) data/generate_ood.py --n 100 --seed 20261123
+
 test:
 	$(PY) -m pytest -q tests
 
@@ -42,6 +45,16 @@ eval-api:                ## reference ceiling via the `claude` CLI (cached in re
 eval-ft:                 ## fine-tuned model served by Ollama, short prompt
 	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --name ft-qwen2.5-0.5b-lora --ollama-url $(OLLAMA_URL)
 	$(PY) evals/report.py
+
+eval-ood:                ## the three models on the OOD set (Haiku via the `claude` CLI; all cached)
+	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-ft-qwen2.5-0.5b-lora --ollama-url $(OLLAMA_URL)
+	$(PY) evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --data data/ood_test.jsonl --name ood-base-qwen2.5-0.5b-fewshot --ollama-url $(OLLAMA_URL)
+	$(PY) evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --workers 3 --data data/ood_test.jsonl --name ood-api-claude-haiku-5-5-fewshot
+	$(PY) evals/report.py
+
+analyze:                 ## per-field error types + error-flag analysis from cached outputs (no model calls)
+	$(PY) evals/analyze.py --data data/test.jsonl --runs base-qwen2.5-0.5b-fewshot ft-qwen2.5-0.5b-lora api-claude-haiku-5-5-fewshot --tag test
+	$(PY) evals/analyze.py --data data/ood_test.jsonl --runs ood-base-qwen2.5-0.5b-fewshot ood-ft-qwen2.5-0.5b-lora ood-api-claude-haiku-5-5-fewshot --tag ood
 
 bench:                   ## tokens/sec on this machine, 20 examples each, nothing else running
 	$(PY) evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --limit 20 --no-cache --name speed-base --ollama-url $(OLLAMA_URL)

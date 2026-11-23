@@ -21,10 +21,17 @@ def num(x, d=1):
     return "n/a" if x is None else f"{x:.{d}f}"
 
 
-def main(results=ROOT / "results"):
+def main(results=ROOT / "results", prefix="", out_name="eval_table.md"):
+    """prefix="" -> main test-split table; prefix="ood-" -> out-of-distribution table (eval_table_ood.md)."""
     runs = {}
     for p in sorted(Path(results).glob("eval_*.json")):
         s = json.loads(p.read_text())["summary"]
+        if prefix:
+            if not s["name"].startswith(prefix):
+                continue
+            s = dict(s, name=s["name"][len(prefix):])
+        elif s["name"].startswith("ood-"):
+            continue
         runs[s["name"]] = s
     names = [n for n in ORDER if n in runs] + [n for n in runs if n not in ORDER and not n.startswith(("speed-", "mock", "probe"))]
     lines = ["| Model | n | Valid JSON | Schema-valid | Field acc (macro) | All fields right | Err precision | Err recall | Latency p50 (s) | Tokens/s |",
@@ -38,11 +45,13 @@ def main(results=ROOT / "results"):
               "|---|" + "---|" * len(names)]
     for f in SCORED_FIELDS:
         lines.append(f"| {f} | " + " | ".join(pct(runs[n]["field_accuracy"][f]) for n in names) + " |")
-    lines += ["", "Commands:", ""] + [f"- `{n}`: `python {runs[n]['command']}` ({runs[n]['date']})" for n in names]
-    out = Path(results) / "eval_table.md"
+    lines += ["", "Commands:", ""] + [f"- `{prefix}{n}`: `python {runs[n]['command']}` ({runs[n]['date']})" for n in names]
+    out = Path(results) / out_name
     out.write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 
 
 if __name__ == "__main__":
     main()
+    if any(Path(ROOT / "results").glob("eval_ood-*.json")):
+        main(prefix="ood-", out_name="eval_table_ood.md")

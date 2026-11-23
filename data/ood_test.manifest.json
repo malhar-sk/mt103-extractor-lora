@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "note": "SYNTHETIC out-of-distribution test set (data/generate_ood.py); not real payments.",
+  "seed": 20261123,
+  "n": 100,
+  "styles": {
+    "narrative": 27,
+    "swift_shuffled": 23,
+    "pipe_table": 24,
+    "kv_mixed": 26
+  },
+  "error_codes": {
+    "MISSING_REQUIRED": 12,
+    "INVALID_DATE": 7,
+    "INVALID_BIC": 9,
+    "NON_POSITIVE_AMOUNT": 3,
+    "INVALID_CHARGES": 5,
+    "INVALID_CURRENCY": 7
+  },
+  "examples_with_errors": 43
+}

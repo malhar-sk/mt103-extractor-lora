@@ -1,0 +1,830 @@
+{
+  "tag": "ood",
+  "data": "data/ood_test.jsonl",
+  "n": 100,
+  "date": "2026-11-23",
+  "runs": {
+    "ood-base-qwen2.5-0.5b-fewshot": {
+      "n": 100,
+      "field_accuracy_macro_by_style": {
+        "kv_mixed": [
+          26,
+          0.5461538461538461
+        ],
+        "narrative": [
+          27,
+          0.3925925925925926
+        ],
+        "pipe_table": [
+          24,
+          0.5611111111111112
+        ],
+        "swift_shuffled": [
+          23,
+          0.4028985507246378
+        ]
+      },
+      "field_accuracy": {
+        "sender_reference": 0.68,
+        "bank_operation_code": 0.5,
+        "value_date": 0.55,
+        "currency": 0.75,
+        "amount": 0.75,
+        "ordering_customer.account": 0.39,
+        "ordering_customer.name": 0.48,
+        "ordering_customer.address": 0.38,
+        "ordering_institution": 0.24,
+        "account_with_institution": 0.25,
+        "beneficiary.account": 0.32,
+        "beneficiary.name": 0.36,
+        "beneficiary.address": 0.42,
+        "remittance_info": 0.52,
+        "charges": 0.54
+      },
+      "field_error_types": {
+        "value_from_other_field": 278,
+        "string_wrong_value": 131,
+        "hallucinated_absent_field": 99,
+        "missed_present_value": 84,
+        "enum_wrong_value": 53,
+        "repaired_impossible_value": 44,
+        "invalid_json": 35,
+        "date_misparsed": 28,
+        "amount_misparsed": 17,
+        "string_partial": 13,
+        "date_wrong_year": 2,
+        "amount_scale": 2,
+        "date_day_month_swap": 1
+      },
+      "field_error_types_by_field": {
+        "sender_reference": {
+          "string_wrong_value": 29,
+          "invalid_json": 3
+        },
+        "bank_operation_code": {
+          "hallucinated_absent_field": 46,
+          "enum_wrong_value": 3,
+          "invalid_json": 1
+        },
+        "value_date": {
+          "date_misparsed": 28,
+          "repaired_impossible_value": 11,
+          "invalid_json": 3,
+          "date_wrong_year": 2,
+          "date_day_month_swap": 1
+        },
+        "ordering_customer.account": {
+          "value_from_other_field": 35,
+          "string_wrong_value": 22,
+          "invalid_json": 3,
+          "string_partial": 1
+        },
+        "ordering_customer.name": {
+          "value_from_other_field": 46,
+          "invalid_json": 3,
+          "string_wrong_value": 3
+        },
+        "ordering_institution": {
+          "missed_present_value": 50,
+          "value_from_other_field": 21,
+          "string_wrong_value": 4,
+          "invalid_json": 1
+        },
+        "account_with_institution": {
+          "value_from_other_field": 38,
+          "string_wrong_value": 14,
+          "hallucinated_absent_field": 14,
+          "repaired_impossible_value": 7,
+          "invalid_json": 2
+        },
+        "beneficiary.account": {
+          "value_from_other_field": 33,
+          "string_wrong_value": 27,
+          "repaired_impossible_value": 3,
+          "invalid_json": 3,
+          "string_partial": 2
+        },
+        "beneficiary.name": {
+          "value_from_other_field": 46,
+          "string_wrong_value": 11,
+          "repaired_impossible_value": 3,
+          "invalid_json": 3,
+          "string_partial": 1
+        },
+        "beneficiary.address": {
+          "missed_present_value": 34,
+          "value_from_other_field": 10,
+          "hallucinated_absent_field": 6,
+          "string_wrong_value": 4,
+          "string_partial": 2,
+          "invalid_json": 1,
+          "repaired_impossible_value": 1
+        },
+        "remittance_info": {
+          "string_wrong_value": 15,
+          "hallucinated_absent_field": 14,
+          "value_from_other_field": 13,
+          "string_partial": 4,
+          "invalid_json": 2
+        },
+        "ordering_customer.address": {
+          "value_from_other_field": 36,
+          "hallucinated_absent_field": 19,
+          "string_partial": 3,
+          "string_wrong_value": 2,
+          "invalid_json": 2
+        },
+        "charges": {
+          "enum_wrong_value": 35,
+          "repaired_impossible_value": 9,
+          "invalid_json": 2
+        },
+        "currency": {
+          "enum_wrong_value": 15,
+          "repaired_impossible_value": 7,
+          "invalid_json": 3
+        },
+        "amount": {
+          "amount_misparsed": 17,
+          "repaired_impossible_value": 3,
+          "invalid_json": 3,
+          "amount_scale": 2
+        }
+      },
+      "field_error_examples": {
+        "string_wrong_value": {
+          "id": "ood-0000",
+          "field": "sender_reference",
+          "gold": "FT2660655795",
+          "pred": "TXN942429",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "enum_wrong_value": {
+          "id": "ood-0000",
+          "field": "bank_operation_code",
+          "gold": "CRED",
+          "pred": "SCH",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "date_misparsed": {
+          "id": "ood-0000",
+          "field": "value_date",
+          "gold": "2026-02-15",
+          "pred": "2026-07-15",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "value_from_other_field": {
+          "id": "ood-0000",
+          "field": "ordering_customer.account",
+          "gold": "DE457500407933791566",
+          "pred": "844420567-96",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "missed_present_value": {
+          "id": "ood-0001",
+          "field": "ordering_institution",
+          "gold": "CHASUS33",
+          "pred": null,
+          "gold_errors": [],
+          "text": ":57a:BNPAFRPP\n:70:Software subscription 0413\n:59:/215358989-63\nMarco Patel\n4th Floor, Nariman Point, Chennai 600002 IN\n:23b:CRTS\n:71a:BEN\n:32a:16th January 2026 EUR 55 800.00\n:20:TXN247517\n/* Pls call me on +91 9878673243 if anything is unclear. */\n:52a:CHASUS33\n:50k:/40555357928569\nHelix Agro SA"
+        },
+        "hallucinated_absent_field": {
+          "id": "ood-0002",
+          "field": "bank_operation_code",
+          "gold": null,
+          "pred": "CRED",
+          "gold_errors": [],
+          "text": "| Field | Value |\n|---|---|\n| payment details | Invoice 1328 / spare parts |\n| Paycr bank BIC | BOFAUS3N |\n| Payee bank BIC | SBININBB |\n| CHARGE BEARER | shared |\n| Recipient | CH758400937206626436 / Arcadia Motors Pvt Ltd / 12 MG Road, New York NY 10005 US |\n| Execution date | 2026/12/01 |\n| Paycr"
+        },
+        "date_wrong_year": {
+          "id": "ood-0003",
+          "field": "value_date",
+          "gold": "2027-01-23",
+          "pred": "2026-01-23",
+          "gold_errors": [],
+          "text": "Thls is account 270655843581, Bluepeak Capital Pte Ltd writing. Their bank's SWIFT code is BNPAFRPP. Use op code CRED. Previous ref TXN417701 was cancelled, do NOT reuse it. We would like to transfer USD 3 000.42 to a/c CH69400313079525382693, Zenith Textiles GmbH. Please make sure the funds arrive "
+        },
+        "string_partial": {
+          "id": "ood-0005",
+          "field": "ordering_customer.account",
+          "gold": "GB23530212310002403822",
+          "pred": "GB23530212310002403822 / Indus Motors PLC",
+          "gold_errors": [
+            "MISSING_REQUIRED: charges: not stated in the text"
+          ],
+          "text": "| field | value |\n|---|---|\n| Memo | Refund order 0650 |\n| Va1ue | 09-AUG-2026 |\n| Payer | GB23530212310002403822 / Indus Motors PLC |\n| recelving bank | SCBLSGSG |\n| Credltor | 168864703349229 / Coromandel Software GmbH |\n| Scnder ref | OPS/APR/455 |\n| Transfer amount | 1,761.74 USD |\n\nNote: last m"
+        },
+        "repaired_impossible_value": {
+          "id": "ood-0005",
+          "field": "charges",
+          "gold": null,
+          "pred": "OUR",
+          "gold_errors": [
+            "MISSING_REQUIRED: charges: not stated in the text"
+          ],
+          "text": "| field | value |\n|---|---|\n| Memo | Refund order 0650 |\n| Va1ue | 09-AUG-2026 |\n| Payer | GB23530212310002403822 / Indus Motors PLC |\n| recelving bank | SCBLSGSG |\n| Credltor | 168864703349229 / Coromandel Software GmbH |\n| Scnder ref | OPS/APR/455 |\n| Transfer amount | 1,761.74 USD |\n\nNote: last m"
+        },
+        "amount_scale": {
+          "id": "ood-0011",
+          "field": "amount",
+          "gold": 6949192.52,
+          "pred": 69491906,
+          "gold_errors": [],
+          "text": "Thls is 409754243-74, Zenith Motors GmbH writing. We would like to transfer INR 6.94919e+06 to 834227780-41, Bluepeak Software LLP, Plot 7, MIDC, Dubai AE. FYI compliance cleared this on 2026-11-15. Charges: our. Please make sure the funds arrive on 11th March 2026. It is for \"Salary Aug 2026\". Quot"
+        },
+        "amount_misparsed": {
+          "id": "ood-0013",
+          "field": "amount",
+          "gold": 131420.06,
+          "pred": 59598.0,
+          "gold_errors": [],
+          "text": "Note: last month we sent EUR 59,598.00 to them for a different invoice, ignore that one. Reclpient=acc 708382099440970 / Falcon Exports Ltd; Sett1e on=2026/06/16; Payer bank BIC=SBININBB; Remitter=acct DE043777701364769383 / Priya Tanaka; Memo=Refund order 5958; Costs=OUR; Sum=SGD 131 420.06; crcdit"
+        },
+        "invalid_json": {
+          "id": "ood-0026",
+          "field": "sender_reference",
+          "gold": "FT2621552548",
+          "pred": "<invalid JSON>",
+          "gold_errors": [
+            "INVALID_BIC: ordering_institution: SCBL is not a valid BIC"
+          ],
+          "text": "| fleld | VALUE |\n|---|---|\n| Rernitter | 473972344-28 / Helix Steel PLC / Plot 7, MIDC, London EC2V 7HN GB |\n| TXN REFERENCE | FT2621552548 |\n| 5ettle on | 2026/12/22 |\n| Crcditor agent | MHCBJPJT |\n| fees | BEN |\n| Debtor agent | SCBL |\n| payee | 073107099-53 / Everest Exports BV |\n| Narrative | I"
+        },
+        "date_day_month_swap": {
+          "id": "ood-0039",
+          "field": "value_date",
+          "gold": "2026-01-10",
+          "pred": "2026-10-01",
+          "gold_errors": [],
+          "text": "| Field | Value |\n|---|---|\n| Payer bank BIC | UTIBINBB |\n| EXECUTLON DATE | 10.1.2026 |\n| SUM | 86 870.46 GBP |\n| Debtor | 980202745-47 / Arcadia Capital SA / Taunusanlage 12, Chennai 600002 IN |\n| 0ur ref# | FT2670853859 |\n| payment details | Refund order 2689 |\n| costs | OUR |\n| op | CRED |\n| pay"
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 7,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 4,
+            "not_flagged_copied_invalid_value": 3
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 7,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 5,
+            "not_flagged_repaired_or_invented": 2
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 9,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 2,
+            "invalid_json": 1,
+            "not_flagged_repaired_or_invented": 5,
+            "not_flagged_field_left_null": 1
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 3,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 3
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 5,
+          "pred": 3,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 2,
+            "invalid_json": 1,
+            "not_flagged_copied_invalid_value": 2
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 12,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 12
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.017543859649122806,
+      "clean_examples": 57,
+      "unparsed_or_missing": 3
+    },
+    "ood-ft-qwen2.5-0.5b-lora": {
+      "n": 100,
+      "field_accuracy_macro_by_style": {
+        "kv_mixed": [
+          26,
+          0.7641025641025643
+        ],
+        "narrative": [
+          27,
+          0.7135802469135801
+        ],
+        "pipe_table": [
+          24,
+          0.7166666666666668
+        ],
+        "swift_shuffled": [
+          23,
+          0.4492753623188407
+        ]
+      },
+      "field_accuracy": {
+        "sender_reference": 0.61,
+        "bank_operation_code": 0.79,
+        "value_date": 0.64,
+        "currency": 0.85,
+        "amount": 0.76,
+        "ordering_customer.account": 0.59,
+        "ordering_customer.name": 0.71,
+        "ordering_customer.address": 0.76,
+        "ordering_institution": 0.39,
+        "account_with_institution": 0.46,
+        "beneficiary.account": 0.67,
+        "beneficiary.name": 0.67,
+        "beneficiary.address": 0.75,
+        "remittance_info": 0.73,
+        "charges": 0.62
+      },
+      "field_error_types": {
+        "value_from_other_field": 159,
+        "missed_present_value": 125,
+        "string_wrong_value": 73,
+        "repaired_impossible_value": 37,
+        "enum_wrong_value": 36,
+        "date_misparsed": 24,
+        "hallucinated_absent_field": 14,
+        "invalid_json": 11,
+        "amount_misparsed": 9,
+        "string_partial": 7,
+        "amount_scale": 3,
+        "date_day_month_swap": 1,
+        "date_wrong_year": 1
+      },
+      "field_error_types_by_field": {
+        "sender_reference": {
+          "string_wrong_value": 37,
+          "value_from_other_field": 1,
+          "invalid_json": 1
+        },
+        "value_date": {
+          "date_misparsed": 24,
+          "repaired_impossible_value": 9,
+          "invalid_json": 1,
+          "date_day_month_swap": 1,
+          "date_wrong_year": 1
+        },
+        "ordering_customer.account": {
+          "value_from_other_field": 22,
+          "string_wrong_value": 18,
+          "invalid_json": 1
+        },
+        "ordering_institution": {
+          "missed_present_value": 49,
+          "value_from_other_field": 11,
+          "invalid_json": 1
+        },
+        "account_with_institution": {
+          "value_from_other_field": 26,
+          "missed_present_value": 11,
+          "repaired_impossible_value": 6,
+          "hallucinated_absent_field": 5,
+          "string_wrong_value": 4,
+          "invalid_json": 1,
+          "string_partial": 1
+        },
+        "bank_operation_code": {
+          "missed_present_value": 18,
+          "enum_wrong_value": 3
+        },
+        "ordering_customer.name": {
+          "value_from_other_field": 24,
+          "string_wrong_value": 4,
+          "invalid_json": 1
+        },
+        "ordering_customer.address": {
+          "value_from_other_field": 14,
+          "missed_present_value": 8,
+          "hallucinated_absent_field": 1,
+          "string_partial": 1
+        },
+        "beneficiary.account": {
+          "value_from_other_field": 22,
+          "string_wrong_value": 4,
+          "repaired_impossible_value": 3,
+          "missed_present_value": 2,
+          "string_partial": 1,
+          "invalid_json": 1
+        },
+        "beneficiary.name": {
+          "value_from_other_field": 23,
+          "string_wrong_value": 4,
+          "repaired_impossible_value": 3,
+          "missed_present_value": 2,
+          "invalid_json": 1
+        },
+        "beneficiary.address": {
+          "value_from_other_field": 14,
+          "missed_present_value": 10,
+          "invalid_json": 1
+        },
+        "remittance_info": {
+          "missed_present_value": 11,
+          "hallucinated_absent_field": 8,
+          "string_partial": 4,
+          "value_from_other_field": 2,
+          "string_wrong_value": 2
+        },
+        "charges": {
+          "enum_wrong_value": 27,
+          "repaired_impossible_value": 7,
+          "missed_present_value": 4
+        },
+        "amount": {
+          "amount_misparsed": 9,
+          "missed_present_value": 9,
+          "amount_scale": 3,
+          "repaired_impossible_value": 2,
+          "invalid_json": 1
+        },
+        "currency": {
+          "repaired_impossible_value": 7,
+          "enum_wrong_value": 6,
+          "invalid_json": 1,
+          "missed_present_value": 1
+        }
+      },
+      "field_error_examples": {
+        "string_wrong_value": {
+          "id": "ood-0000",
+          "field": "sender_reference",
+          "gold": "FT2660655795",
+          "pred": "DE457500407933791566",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "date_misparsed": {
+          "id": "ood-0000",
+          "field": "value_date",
+          "gold": "2026-02-15",
+          "pred": "2026-07-01",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "missed_present_value": {
+          "id": "ood-0000",
+          "field": "ordering_institution",
+          "gold": "MHCBJPJT",
+          "pred": null,
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "value_from_other_field": {
+          "id": "ood-0000",
+          "field": "account_with_institution",
+          "gold": "SCBLSGSG",
+          "pred": "MHCBJPJT",
+          "gold_errors": [],
+          "text": "This is a/c DE457500407933791566, Coromandel Logistics Pte Ltd, Unit 5B, Hi-Tech Park, Dubai AE writing. It is for \"Salary Jul 2026\". P1ease make sure the funds arrive on 15.2.2026. We would like to transfer AED 64385 to 844420567-96, Aisha Brown. Debit us through MHCBJPJT. Previous ref TXN942429 wa"
+        },
+        "enum_wrong_value": {
+          "id": "ood-0001",
+          "field": "charges",
+          "gold": "BEN",
+          "pred": "TXN247517",
+          "gold_errors": [],
+          "text": ":57a:BNPAFRPP\n:70:Software subscription 0413\n:59:/215358989-63\nMarco Patel\n4th Floor, Nariman Point, Chennai 600002 IN\n:23b:CRTS\n:71a:BEN\n:32a:16th January 2026 EUR 55 800.00\n:20:TXN247517\n/* Pls call me on +91 9878673243 if anything is unclear. */\n:52a:CHASUS33\n:50k:/40555357928569\nHelix Agro SA"
+        },
+        "string_partial": {
+          "id": "ood-0004",
+          "field": "beneficiary.account",
+          "gold": "030848028140",
+          "pred": "030848028140 / Kestrel Components GmbH",
+          "gold_errors": [],
+          "text": "| FIELD | Va1ue |\n|---|---|\n| Recipient | account 030848028140 / Kestrel Components GmbH |\n| Charge bearer | sha |\n| PAYMENT DETAILS | Settlement of INV 6457 and INV 1431 |\n| Payee bank BIC | BNPAFRPP |\n| Payer | a/c CH087747607395639700 / Marco Müller |\n| value | 2026/11/19 |\n| Amount | CHF 33068.7"
+        },
+        "repaired_impossible_value": {
+          "id": "ood-0005",
+          "field": "charges",
+          "gold": null,
+          "pred": "OUR",
+          "gold_errors": [
+            "MISSING_REQUIRED: charges: not stated in the text"
+          ],
+          "text": "| field | value |\n|---|---|\n| Memo | Refund order 0650 |\n| Va1ue | 09-AUG-2026 |\n| Payer | GB23530212310002403822 / Indus Motors PLC |\n| recelving bank | SCBLSGSG |\n| Credltor | 168864703349229 / Coromandel Software GmbH |\n| Scnder ref | OPS/APR/455 |\n| Transfer amount | 1,761.74 USD |\n\nNote: last m"
+        },
+        "amount_scale": {
+          "id": "ood-0011",
+          "field": "amount",
+          "gold": 6949192.52,
+          "pred": 694918.9,
+          "gold_errors": [],
+          "text": "Thls is 409754243-74, Zenith Motors GmbH writing. We would like to transfer INR 6.94919e+06 to 834227780-41, Bluepeak Software LLP, Plot 7, MIDC, Dubai AE. FYI compliance cleared this on 2026-11-15. Charges: our. Please make sure the funds arrive on 11th March 2026. It is for \"Salary Aug 2026\". Quot"
+        },
+        "hallucinated_absent_field": {
+          "id": "ood-0012",
+          "field": "remittance_info",
+          "gold": null,
+          "pred": "Transfer amount of 11,000.00 CHF from account with SERENDER to account with FES",
+          "gold_errors": [],
+          "text": "This replaces the instruction from 2026-01-19. paycr bank bic=HDFCINBB; Reclpient=FR664064306917725793 / Meridian Logistics Pvt Ltd / Plot 7, MIDC, Mumbai 400001 IN; Executlon date=20270103; recelving bank=SBININBB; debtor=acc 745420744-73 / Sarah Sharma; Transfer amount=11,000.00 chf; SENDER REF=FT"
+        },
+        "amount_misparsed": {
+          "id": "ood-0019",
+          "field": "amount",
+          "gold": 1466800.0,
+          "pred": 14667950.98,
+          "gold_errors": [
+            "INVALID_DATE: value_date: 2026-02-30 is not a real calendar date"
+          ],
+          "text": ":71a:OUR\n:70:Invoice 9652 / spare parts\n:59:/631297611-21\nJuniper Agro LLP\n8 Marina Blvd, Hong Kong HK\n:20:OPS/JUN/344\n:50k:/31495750981\nPriya Fernandes\n270 Park Avenue, Pune 411001 IN\n:32a:2026-02-30 JPY 1.4668e+06"
+        },
+        "invalid_json": {
+          "id": "ood-0029",
+          "field": "sender_reference",
+          "gold": "TXN460351",
+          "pred": "<invalid JSON>",
+          "gold_errors": [
+            "MISSING_REQUIRED: charges: not stated in the text"
+          ],
+          "text": ":59:/DE835660779283672735\nBluepeak Motors Inc\n16 Bd des Italiens, Zurich 8001 CH\n:32a:2026/05/25 INR 5 015 579.30\n:57a:COBADEFFXXX\n:52a:UTIBINBB\n:20:TXN460351\n:50k:/085682054-31\nSaffron Pharma SA\n/* Pls call me on +91 9863647565 if anything is unclear. */"
+        },
+        "date_day_month_swap": {
+          "id": "ood-0039",
+          "field": "value_date",
+          "gold": "2026-01-10",
+          "pred": "2026-10-01",
+          "gold_errors": [],
+          "text": "| Field | Value |\n|---|---|\n| Payer bank BIC | UTIBINBB |\n| EXECUTLON DATE | 10.1.2026 |\n| SUM | 86 870.46 GBP |\n| Debtor | 980202745-47 / Arcadia Capital SA / Taunusanlage 12, Chennai 600002 IN |\n| 0ur ref# | FT2670853859 |\n| payment details | Refund order 2689 |\n| costs | OUR |\n| op | CRED |\n| pay"
+        },
+        "date_wrong_year": {
+          "id": "ood-0076",
+          "field": "value_date",
+          "gold": "2026-09-18",
+          "pred": "2024-09-18",
+          "gold_errors": [],
+          "text": "This is CH67188762936165886179, Meridian Analytics Pvt Ltd writing. Note: last month we sent EUR 56,039.00 to them for a different invoice, ignore that one. Use op code CRED. Debit us through HSBCHKHH. Their bank's SWIFT code is INGBNL2A. Quote FT2639921716 as our reference. It is for \"Tuition fees "
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 7,
+          "pred": 23,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 3,
+            "not_flagged_copied_invalid_value": 3,
+            "flagged_wrong_code_or_field": 1
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 7,
+          "pred": 10,
+          "recall": 0.14285714285714285,
+          "precision": 0.1,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 4,
+            "flagged_correctly": 1,
+            "not_flagged_repaired_or_invented": 2
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 9,
+          "pred": 2,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 2,
+            "not_flagged_field_left_null": 3,
+            "not_flagged_copied_invalid_value": 4
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 3,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 2,
+            "not_flagged_field_left_null": 1
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 5,
+          "pred": 9,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "flagged_wrong_code_or_field": 1,
+            "not_flagged_copied_invalid_value": 4
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 12,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 7,
+            "invalid_json": 1,
+            "flagged_wrong_code_or_field": 2,
+            "not_flagged_field_left_null": 2
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.47368421052631576,
+      "clean_examples": 57,
+      "unparsed_or_missing": 1
+    },
+    "ood-api-claude-haiku-5-5-fewshot": {
+      "n": 100,
+      "field_accuracy_macro_by_style": {
+        "kv_mixed": [
+          26,
+          0.9871794871794872
+        ],
+        "narrative": [
+          27,
+          0.9679012345679012
+        ],
+        "pipe_table": [
+          24,
+          0.9916666666666667
+        ],
+        "swift_shuffled": [
+          23,
+          0.9797101449275363
+        ]
+      },
+      "field_accuracy": {
+        "sender_reference": 1.0,
+        "bank_operation_code": 1.0,
+        "value_date": 0.99,
+        "currency": 0.99,
+        "amount": 0.9,
+        "ordering_customer.account": 0.97,
+        "ordering_customer.name": 1.0,
+        "ordering_customer.address": 1.0,
+        "ordering_institution": 0.96,
+        "account_with_institution": 0.94,
+        "beneficiary.account": 1.0,
+        "beneficiary.name": 1.0,
+        "beneficiary.address": 1.0,
+        "remittance_info": 1.0,
+        "charges": 0.97
+      },
+      "field_error_types": {
+        "missed_present_value": 12,
+        "amount_misparsed": 7,
+        "repaired_impossible_value": 5,
+        "value_from_other_field": 4
+      },
+      "field_error_types_by_field": {
+        "ordering_institution": {
+          "value_from_other_field": 3,
+          "missed_present_value": 1
+        },
+        "account_with_institution": {
+          "missed_present_value": 4,
+          "value_from_other_field": 1,
+          "repaired_impossible_value": 1
+        },
+        "amount": {
+          "amount_misparsed": 7,
+          "repaired_impossible_value": 3
+        },
+        "ordering_customer.account": {
+          "missed_present_value": 3
+        },
+        "currency": {
+          "repaired_impossible_value": 1
+        },
+        "charges": {
+          "missed_present_value": 3
+        },
+        "value_date": {
+          "missed_present_value": 1
+        }
+      },
+      "field_error_examples": {
+        "value_from_other_field": {
+          "id": "ood-0003",
+          "field": "ordering_institution",
+          "gold": null,
+          "pred": "BNPAFRPP",
+          "gold_errors": [],
+          "text": "Thls is account 270655843581, Bluepeak Capital Pte Ltd writing. Their bank's SWIFT code is BNPAFRPP. Use op code CRED. Previous ref TXN417701 was cancelled, do NOT reuse it. We would like to transfer USD 3 000.42 to a/c CH69400313079525382693, Zenith Textiles GmbH. Please make sure the funds arrive "
+        },
+        "missed_present_value": {
+          "id": "ood-0003",
+          "field": "account_with_institution",
+          "gold": "BNPAFRPP",
+          "pred": null,
+          "gold_errors": [],
+          "text": "Thls is account 270655843581, Bluepeak Capital Pte Ltd writing. Their bank's SWIFT code is BNPAFRPP. Use op code CRED. Previous ref TXN417701 was cancelled, do NOT reuse it. We would like to transfer USD 3 000.42 to a/c CH69400313079525382693, Zenith Textiles GmbH. Please make sure the funds arrive "
+        },
+        "amount_misparsed": {
+          "id": "ood-0011",
+          "field": "amount",
+          "gold": 6949192.52,
+          "pred": 6949190,
+          "gold_errors": [],
+          "text": "Thls is 409754243-74, Zenith Motors GmbH writing. We would like to transfer INR 6.94919e+06 to 834227780-41, Bluepeak Software LLP, Plot 7, MIDC, Dubai AE. FYI compliance cleared this on 2026-11-15. Charges: our. Please make sure the funds arrive on 11th March 2026. It is for \"Salary Aug 2026\". Quot"
+        },
+        "repaired_impossible_value": {
+          "id": "ood-0021",
+          "field": "amount",
+          "gold": null,
+          "pred": 9000,
+          "gold_errors": [
+            "NON_POSITIVE_AMOUNT: amount: (9000) is not a positive amount"
+          ],
+          "text": "/* Client called on 02/02/2026 to confirm, ticket closed after. */\n:59:/388769130504\nGanges Software BV\n:57a:CITIUS33\n:32a:2026/02/11 USD (9000)\n:71a:BEN\n:23b:CRED\n:20:FT2635416059\n:70:Tuition fees semester 2\n:50k:/725357176-30\nCoromandel Software LLP\n221 Park Street, Dubai AE\n:52a:HSBCHKHH"
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 7,
+          "pred": 6,
+          "recall": 0.8571428571428571,
+          "precision": 1.0,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 1,
+            "flagged_correctly": 6
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 7,
+          "pred": 8,
+          "recall": 1.0,
+          "precision": 0.875,
+          "outcomes": {
+            "flagged_correctly": 7
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 9,
+          "pred": 8,
+          "recall": 0.8888888888888888,
+          "precision": 1.0,
+          "outcomes": {
+            "flagged_correctly": 8,
+            "not_flagged_repaired_or_invented": 1
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 3,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 3
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 5,
+          "pred": 7,
+          "recall": 1.0,
+          "precision": 0.7142857142857143,
+          "outcomes": {
+            "flagged_correctly": 5
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 12,
+          "pred": 13,
+          "recall": 1.0,
+          "precision": 0.9230769230769231,
+          "outcomes": {
+            "flagged_correctly": 12
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.017543859649122806,
+      "clean_examples": 57,
+      "unparsed_or_missing": 0
+    }
+  }
+}

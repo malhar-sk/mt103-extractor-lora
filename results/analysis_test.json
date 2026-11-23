@@ -1,0 +1,757 @@
+{
+  "tag": "test",
+  "data": "data/test.jsonl",
+  "n": 300,
+  "date": "2026-11-23",
+  "runs": {
+    "base-qwen2.5-0.5b-fewshot": {
+      "n": 300,
+      "field_accuracy_macro_by_style": {},
+      "field_accuracy": {
+        "sender_reference": 0.9666666666666667,
+        "bank_operation_code": 0.49666666666666665,
+        "value_date": 0.6066666666666667,
+        "currency": 0.9366666666666666,
+        "amount": 0.82,
+        "ordering_customer.account": 0.56,
+        "ordering_customer.name": 0.6366666666666667,
+        "ordering_customer.address": 0.38666666666666666,
+        "ordering_institution": 0.41333333333333333,
+        "account_with_institution": 0.4166666666666667,
+        "beneficiary.account": 0.5666666666666667,
+        "beneficiary.name": 0.6666666666666666,
+        "beneficiary.address": 0.46,
+        "remittance_info": 0.6766666666666666,
+        "charges": 0.7866666666666666
+      },
+      "field_error_types": {
+        "value_from_other_field": 587,
+        "hallucinated_absent_field": 341,
+        "missed_present_value": 237,
+        "string_wrong_value": 204,
+        "date_misparsed": 86,
+        "repaired_impossible_value": 67,
+        "enum_wrong_value": 65,
+        "string_partial": 43,
+        "amount_scale": 21,
+        "amount_misparsed": 21,
+        "date_day_month_swap": 6,
+        "date_wrong_year": 3
+      },
+      "field_error_types_by_field": {
+        "value_date": {
+          "date_misparsed": 86,
+          "repaired_impossible_value": 23,
+          "date_day_month_swap": 6,
+          "date_wrong_year": 3
+        },
+        "ordering_customer.account": {
+          "value_from_other_field": 89,
+          "string_wrong_value": 43
+        },
+        "ordering_customer.address": {
+          "value_from_other_field": 99,
+          "hallucinated_absent_field": 67,
+          "string_wrong_value": 11,
+          "string_partial": 7
+        },
+        "beneficiary.address": {
+          "missed_present_value": 100,
+          "hallucinated_absent_field": 27,
+          "value_from_other_field": 21,
+          "string_wrong_value": 10,
+          "string_partial": 4
+        },
+        "bank_operation_code": {
+          "hallucinated_absent_field": 139,
+          "enum_wrong_value": 12
+        },
+        "ordering_institution": {
+          "missed_present_value": 121,
+          "value_from_other_field": 41,
+          "hallucinated_absent_field": 11,
+          "string_wrong_value": 3
+        },
+        "beneficiary.account": {
+          "value_from_other_field": 66,
+          "string_wrong_value": 63,
+          "string_partial": 1
+        },
+        "ordering_customer.name": {
+          "value_from_other_field": 105,
+          "string_wrong_value": 4
+        },
+        "account_with_institution": {
+          "value_from_other_field": 77,
+          "hallucinated_absent_field": 40,
+          "string_wrong_value": 38,
+          "missed_present_value": 13,
+          "repaired_impossible_value": 5,
+          "string_partial": 2
+        },
+        "remittance_info": {
+          "hallucinated_absent_field": 57,
+          "string_partial": 27,
+          "string_wrong_value": 9,
+          "value_from_other_field": 4
+        },
+        "beneficiary.name": {
+          "value_from_other_field": 85,
+          "string_wrong_value": 13,
+          "string_partial": 2
+        },
+        "charges": {
+          "enum_wrong_value": 44,
+          "repaired_impossible_value": 17,
+          "missed_present_value": 3
+        },
+        "amount": {
+          "amount_scale": 21,
+          "amount_misparsed": 21,
+          "repaired_impossible_value": 12
+        },
+        "sender_reference": {
+          "string_wrong_value": 10
+        },
+        "currency": {
+          "repaired_impossible_value": 10,
+          "enum_wrong_value": 9
+        }
+      },
+      "field_error_examples": {
+        "date_misparsed": {
+          "id": "syn-00003",
+          "field": "value_date",
+          "gold": "2026-09-05",
+          "pred": "2026-11-02",
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "string_wrong_value": {
+          "id": "syn-00003",
+          "field": "ordering_customer.account",
+          "gold": "726045614514",
+          "pred": "260905INR2681837.84",
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "value_from_other_field": {
+          "id": "syn-00003",
+          "field": "ordering_customer.address",
+          "gold": null,
+          "pred": "Plot 7, MIDC, Chennai 600002 IN",
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "missed_present_value": {
+          "id": "syn-00003",
+          "field": "beneficiary.address",
+          "gold": "Plot 7, MIDC, Chennai 600002 IN",
+          "pred": null,
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "hallucinated_absent_field": {
+          "id": "syn-00027",
+          "field": "bank_operation_code",
+          "gold": null,
+          "pred": "CRED",
+          "gold_errors": [
+            "INVALID_DATE: value_date: 2027-00-12 is not a real calendar date"
+          ],
+          "text": "{1:F01BNPAFRPPAXXX0000000000}{2:I103DEUTDEDBXN}{4:\n:20:TXN300326\n:32A:2027-00-12GBP99100,00\n:50K:/NL646501977009764520\nKenji Gupta\n:52A:BNPAFRPP\n:57A:DEUTDEDB\n:59:/80164166609\nCoromandel Logistics Pvt Ltd\n:70:Settlement of INV 2164 and INV 1004\n:71A:OUR\n-}"
+        },
+        "repaired_impossible_value": {
+          "id": "syn-00027",
+          "field": "value_date",
+          "gold": null,
+          "pred": "2027-01-12",
+          "gold_errors": [
+            "INVALID_DATE: value_date: 2027-00-12 is not a real calendar date"
+          ],
+          "text": "{1:F01BNPAFRPPAXXX0000000000}{2:I103DEUTDEDBXN}{4:\n:20:TXN300326\n:32A:2027-00-12GBP99100,00\n:50K:/NL646501977009764520\nKenji Gupta\n:52A:BNPAFRPP\n:57A:DEUTDEDB\n:59:/80164166609\nCoromandel Logistics Pvt Ltd\n:70:Settlement of INV 2164 and INV 1004\n:71A:OUR\n-}"
+        },
+        "string_partial": {
+          "id": "syn-00040",
+          "field": "ordering_customer.address",
+          "gold": "1 Churchill Place, Chennai 600002 IN",
+          "pred": "Churchill Place, Chennai 600002 IN",
+          "gold_errors": [],
+          "text": "@ops send USD 6438.71 to a/c 073280913-72 Indus Trading LLC at DEUTDEFF from acct 238792969977 Juniper Textiles LLC 1 Churchill Place, Chennai 600002 IN value date February 21, 2026 ref PAY-2025-55796 charges BEN (charges to beneficiary) (CRED)"
+        },
+        "enum_wrong_value": {
+          "id": "syn-00046",
+          "field": "charges",
+          "gold": "BEN",
+          "pred": "OUR",
+          "gold_errors": [],
+          "text": "@ops send US$4,972.04 to 30874878014049 Aarav Tanaka at UTIBINBB from 215834418-66 Tata-Vale Steel Inc 16 Bd des Italiens, Tokyo 100-0005 JP via DEUTDEFF value date 06.02.2027 reference PAY-2026-73041 for Dividend payout Jul chrgs ben"
+        },
+        "amount_scale": {
+          "id": "syn-00093",
+          "field": "amount",
+          "gold": 4335.1,
+          "pred": 433510.01,
+          "gold_errors": [
+            "MISSING_REQUIRED: value_date: not stated in the text"
+          ],
+          "text": "---\n:20:TXN784584\n:23B:CRED\n:32A:EUR4335,10  (date tbc)\n:50K:/00702049800371\nEverest Motors PLC\n1 Churchill Place, Zurich 8001 CH\n:52A:BOFAUS3N\n:57A:INGBNL2A\n:59:/DE81087737837973422365\nKestrel Steel Inc\n:70:Dividend payout Aug\n:71A:OUR"
+        },
+        "amount_misparsed": {
+          "id": "syn-00160",
+          "field": "amount",
+          "gold": 32994.33,
+          "pred": 329433.0,
+          "gold_errors": [],
+          "text": "hey send EUR 32.994,33 to 619595279-76 Meridian Shipping GmbH at BARCGB22 from a/c 243734796-97 Arcadia Components SA value date 25-Sep-26 ref FT2697639006 for Refund order 8574 charges split charges (SHA) (CRED)"
+        },
+        "date_day_month_swap": {
+          "id": "syn-00367",
+          "field": "value_date",
+          "gold": "2027-02-04",
+          "pred": "2027-04-02",
+          "gold_errors": [],
+          "text": "Ticket: OPS-1030\nRef: OPS/SEP/816\nCcy/Amt: USD | 5 289.27\nVD: 04.02.2027\nOrdering cust: NL81786385166209555595 ; Marco Patel\nBene: 796516724-63 ; Nilgiri Exports Pte Ltd\nDetails: Freight charges BL 4048\nChg: ben\n23B: CRED"
+        },
+        "date_wrong_year": {
+          "id": "syn-02297",
+          "field": "value_date",
+          "gold": "2027-02-14",
+          "pred": "2026-02-14",
+          "gold_errors": [],
+          "text": "pls rush - send INR 72,75,171.47 to acct GB684090606467976672 Ganges Agro SA Taunusanlage 12, Pune 411001 IN from acct CH071671288230581744 Saffron Motors PLC 4th Floor, Nariman Point, Hong Kong HK via HDFCINBB value date 14-Feb-27 reference FT2644602661 for Rent Oct 2026 office charges beneficiary "
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 10,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 9,
+            "not_flagged_copied_invalid_value": 1
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 18,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 15,
+            "not_flagged_copied_invalid_value": 3
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 7,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 4,
+            "not_flagged_field_left_null": 2,
+            "not_flagged_repaired_or_invented": 1
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 12,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 7,
+            "not_flagged_repaired_or_invented": 5
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 16,
+          "pred": 3,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 14,
+            "not_flagged_repaired_or_invented": 2
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 6,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 6
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.012987012987012988,
+      "clean_examples": 231,
+      "unparsed_or_missing": 0
+    },
+    "ft-qwen2.5-0.5b-lora": {
+      "n": 300,
+      "field_accuracy_macro_by_style": {},
+      "field_accuracy": {
+        "sender_reference": 0.9933333333333333,
+        "bank_operation_code": 0.8966666666666666,
+        "value_date": 0.91,
+        "currency": 0.9666666666666667,
+        "amount": 0.9,
+        "ordering_customer.account": 0.9833333333333333,
+        "ordering_customer.name": 1.0,
+        "ordering_customer.address": 0.9766666666666667,
+        "ordering_institution": 0.8766666666666667,
+        "account_with_institution": 0.8033333333333333,
+        "beneficiary.account": 0.9833333333333333,
+        "beneficiary.name": 0.9866666666666667,
+        "beneficiary.address": 0.98,
+        "remittance_info": 0.9733333333333334,
+        "charges": 0.9
+      },
+      "field_error_types": {
+        "missed_present_value": 100,
+        "repaired_impossible_value": 51,
+        "value_from_other_field": 37,
+        "string_wrong_value": 18,
+        "amount_scale": 14,
+        "hallucinated_absent_field": 12,
+        "date_misparsed": 8,
+        "enum_wrong_value": 7,
+        "amount_misparsed": 7,
+        "string_partial": 7
+      },
+      "field_error_types_by_field": {
+        "value_date": {
+          "repaired_impossible_value": 19,
+          "date_misparsed": 8
+        },
+        "amount": {
+          "amount_scale": 14,
+          "amount_misparsed": 7,
+          "missed_present_value": 6,
+          "repaired_impossible_value": 3
+        },
+        "ordering_customer.address": {
+          "value_from_other_field": 3,
+          "hallucinated_absent_field": 2,
+          "missed_present_value": 2
+        },
+        "ordering_institution": {
+          "missed_present_value": 20,
+          "value_from_other_field": 14,
+          "repaired_impossible_value": 1,
+          "string_wrong_value": 1,
+          "string_partial": 1
+        },
+        "account_with_institution": {
+          "missed_present_value": 27,
+          "value_from_other_field": 15,
+          "hallucinated_absent_field": 8,
+          "string_wrong_value": 4,
+          "string_partial": 3,
+          "repaired_impossible_value": 2
+        },
+        "bank_operation_code": {
+          "missed_present_value": 30,
+          "enum_wrong_value": 1
+        },
+        "charges": {
+          "repaired_impossible_value": 16,
+          "missed_present_value": 8,
+          "enum_wrong_value": 6
+        },
+        "beneficiary.account": {
+          "string_wrong_value": 2,
+          "value_from_other_field": 2,
+          "missed_present_value": 1
+        },
+        "currency": {
+          "repaired_impossible_value": 10
+        },
+        "beneficiary.name": {
+          "string_wrong_value": 3,
+          "missed_present_value": 1
+        },
+        "remittance_info": {
+          "string_partial": 3,
+          "value_from_other_field": 3,
+          "hallucinated_absent_field": 2
+        },
+        "ordering_customer.account": {
+          "string_wrong_value": 5
+        },
+        "beneficiary.address": {
+          "missed_present_value": 5,
+          "string_wrong_value": 1
+        },
+        "sender_reference": {
+          "string_wrong_value": 2
+        }
+      },
+      "field_error_examples": {
+        "date_misparsed": {
+          "id": "syn-00003",
+          "field": "value_date",
+          "gold": "2026-09-05",
+          "pred": "2026-05-05",
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "missed_present_value": {
+          "id": "syn-00003",
+          "field": "amount",
+          "gold": 2681837.84,
+          "pred": null,
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "value_from_other_field": {
+          "id": "syn-00003",
+          "field": "ordering_customer.address",
+          "gold": null,
+          "pred": "726045614514",
+          "gold_errors": [],
+          "text": ":20:TXN780128\n:23B:CRED\n:32A:260905INR2681837,84\n:50K:/726045614514\nAisha Tanaka\n:57A:DEUTDEDB\n:59:/54150945237\nAisha Müller\nPlot 7, MIDC, Chennai 600002 IN\n:70:Software subscription 4793\n:71A:SHA\n...(rest cut off)"
+        },
+        "repaired_impossible_value": {
+          "id": "syn-00027",
+          "field": "value_date",
+          "gold": null,
+          "pred": "2027-01-12",
+          "gold_errors": [
+            "INVALID_DATE: value_date: 2027-00-12 is not a real calendar date"
+          ],
+          "text": "{1:F01BNPAFRPPAXXX0000000000}{2:I103DEUTDEDBXN}{4:\n:20:TXN300326\n:32A:2027-00-12GBP99100,00\n:50K:/NL646501977009764520\nKenji Gupta\n:52A:BNPAFRPP\n:57A:DEUTDEDB\n:59:/80164166609\nCoromandel Logistics Pvt Ltd\n:70:Settlement of INV 2164 and INV 1004\n:71A:OUR\n-}"
+        },
+        "string_wrong_value": {
+          "id": "syn-00080",
+          "field": "account_with_institution",
+          "gold": "CHASUS33",
+          "pred": "SWIFT",
+          "gold_errors": [],
+          "text": "Hi\n\nOur ref: PAY-2026-80247\nAmout: AED 209 359.66\nCharges: shared\nBeneficiary bank SWIFT: CHASUS33\nValue date: June 11, 2026\nBenef.: GB572509406514231681, Saffron Exports Ltd, 12 MG Road, Dubai AE\nDebit a/c / remitter: acct 00170871838847, Harbor Trading PLC, 4th Floor, Nariman Point, Tokyo 100-0005"
+        },
+        "enum_wrong_value": {
+          "id": "syn-00153",
+          "field": "bank_operation_code",
+          "gold": "CRED",
+          "pred": "OUR",
+          "gold_errors": [],
+          "text": "Ticket\tOPS-6212\nRef\tOPS/OCT/575\nCcy/Amt\t$ | 2,437.26\nVD\t01/01/2026\nOrdering cust\taccount GB56481621644337376497 ; Falcon Exports GmbH ; 221 Park Street, Bengaluru 560001 IN\nBene\tFR51811274924646569555 ; Arcadia Motors Inc ; 12 MG Road, Dubai AE\nAWI (57A)\tHDFCINBB\nDetails\tTuition fees semester 4\nChg\t"
+        },
+        "hallucinated_absent_field": {
+          "id": "syn-00254",
+          "field": "account_with_institution",
+          "gold": null,
+          "pred": "OUR",
+          "gold_errors": [],
+          "text": ":20:TXN470178\n:32A:2026-01-12EUR91564,74\n:50K:/223866386699\nBluepeak Exports PLC\n270 Park Avenue, Tokyo 100-0005 JP\n:59:/690415821-38\nTata-Vale Motors GmbH\n1 Churchill Place, Bengaluru 560001 IN\n:71A:OUR\n...(rest cut off)"
+        },
+        "amount_scale": {
+          "id": "syn-00351",
+          "field": "amount",
+          "gold": 4565395.5,
+          "pred": 4565.3955,
+          "gold_errors": [],
+          "text": "pls rush - send INR 4 565 395.50 to account DE947235127608069368 Falcon Motors Pvt Ltd 16 Bd des Italiens, London EC2V 7HN GB at BARCGB22 from account 187611722349705 Divya Gupta 16 Bd des Italiens, Singapore 048583 SG via UTIBINBB value date 18-09-2026 reference FT2655315014 for Rent Jul 2026 offic"
+        },
+        "amount_misparsed": {
+          "id": "syn-00546",
+          "field": "amount",
+          "gold": 190742.91,
+          "pred": 190743.0,
+          "gold_errors": [
+            "INVALID_CHARGES: charges: NONE is not OUR/SHA/BEN"
+          ],
+          "text": "Hello,\n\nPlease process the below payment today.\nOur ref: PAY-2025-80842\nAmnt: AED 190743\nValue date: 28.07.2026\nDebit acct / remitter: account 25460237860, Bluepeak Motors LLC, 16 Bd des Italiens, New York NY 10005 US\nOur bank: CHASUS33\nBeneficiary: 461951840037, Indus Components PLC\nChrgs: NONE\n\nBe"
+        },
+        "string_partial": {
+          "id": "syn-00608",
+          "field": "remittance_info",
+          "gold": "Dividend payout Feb",
+          "pred": "Dividend payout",
+          "gold_errors": [],
+          "text": "pls rush - send jpy 3,030,469.00 to acc 43603792762 elena gupta at utibinbb from a/c nl83208688166201997814 divya iyer via mhcbjpjt value date 260402 refrence ft2630714641 for dividend payout feb chrgs ben (crts)"
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 10,
+          "pred": 16,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 8,
+            "not_flagged_copied_invalid_value": 2
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 18,
+          "pred": 22,
+          "recall": 0.16666666666666666,
+          "precision": 0.13636363636363635,
+          "outcomes": {
+            "not_flagged_repaired_or_invented": 9,
+            "not_flagged_copied_invalid_value": 6,
+            "flagged_correctly": 3
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 7,
+          "pred": 4,
+          "recall": 0.0,
+          "precision": 0.0,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 2,
+            "not_flagged_field_left_null": 4,
+            "not_flagged_repaired_or_invented": 1
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 12,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "not_flagged_field_left_null": 9,
+            "not_flagged_repaired_or_invented": 3
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 16,
+          "pred": 53,
+          "recall": 0.125,
+          "precision": 0.03773584905660377,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 14,
+            "flagged_correctly": 2
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 6,
+          "pred": 0,
+          "recall": 0.0,
+          "precision": null,
+          "outcomes": {
+            "flagged_wrong_code_or_field": 3,
+            "not_flagged_field_left_null": 2,
+            "not_flagged_repaired_or_invented": 1
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.3116883116883117,
+      "clean_examples": 231,
+      "unparsed_or_missing": 0
+    },
+    "api-claude-haiku-5-5-fewshot": {
+      "n": 300,
+      "field_accuracy_macro_by_style": {},
+      "field_accuracy": {
+        "sender_reference": 0.9966666666666667,
+        "bank_operation_code": 0.9933333333333333,
+        "value_date": 0.9933333333333333,
+        "currency": 0.9966666666666667,
+        "amount": 0.97,
+        "ordering_customer.account": 0.9966666666666667,
+        "ordering_customer.name": 0.9966666666666667,
+        "ordering_customer.address": 0.9966666666666667,
+        "ordering_institution": 0.9966666666666667,
+        "account_with_institution": 0.9933333333333333,
+        "beneficiary.account": 0.9966666666666667,
+        "beneficiary.name": 0.9966666666666667,
+        "beneficiary.address": 0.9966666666666667,
+        "remittance_info": 0.95,
+        "charges": 0.9966666666666667
+      },
+      "field_error_types": {
+        "string_partial": 13,
+        "string_wrong_value": 8,
+        "amount_misparsed": 8,
+        "missed_present_value": 5,
+        "date_misparsed": 2,
+        "repaired_impossible_value": 2,
+        "enum_wrong_value": 1,
+        "hallucinated_absent_field": 1
+      },
+      "field_error_types_by_field": {
+        "ordering_institution": {
+          "missed_present_value": 1
+        },
+        "value_date": {
+          "date_misparsed": 2
+        },
+        "sender_reference": {
+          "string_wrong_value": 1
+        },
+        "bank_operation_code": {
+          "missed_present_value": 2
+        },
+        "currency": {
+          "enum_wrong_value": 1
+        },
+        "amount": {
+          "amount_misparsed": 8,
+          "repaired_impossible_value": 1
+        },
+        "ordering_customer.account": {
+          "string_wrong_value": 1
+        },
+        "ordering_customer.name": {
+          "string_wrong_value": 1
+        },
+        "ordering_customer.address": {
+          "hallucinated_absent_field": 1
+        },
+        "account_with_institution": {
+          "string_wrong_value": 1,
+          "repaired_impossible_value": 1
+        },
+        "beneficiary.account": {
+          "string_wrong_value": 1
+        },
+        "beneficiary.name": {
+          "string_wrong_value": 1
+        },
+        "beneficiary.address": {
+          "missed_present_value": 1
+        },
+        "remittance_info": {
+          "string_partial": 13,
+          "string_wrong_value": 2
+        },
+        "charges": {
+          "missed_present_value": 1
+        }
+      },
+      "field_error_examples": {
+        "missed_present_value": {
+          "id": "syn-00046",
+          "field": "ordering_institution",
+          "gold": "DEUTDEFF",
+          "pred": null,
+          "gold_errors": [],
+          "text": "@ops send US$4,972.04 to 30874878014049 Aarav Tanaka at UTIBINBB from 215834418-66 Tata-Vale Steel Inc 16 Bd des Italiens, Tokyo 100-0005 JP via DEUTDEFF value date 06.02.2027 reference PAY-2026-73041 for Dividend payout Jul chrgs ben"
+        },
+        "date_misparsed": {
+          "id": "syn-00114",
+          "field": "value_date",
+          "gold": "2027-01-24",
+          "pred": "2024-01-27",
+          "gold_errors": [],
+          "text": "hey send Rs 18,98,600.00 to acct 458436655-73 Harbor Agro SA 1 Churchill Place, Chennai 600002 IN at HDFCINBB from account 84095094777 Nilgiri Foods Pte Ltd 4th Floor, Nariman Point, Bengaluru 560001 IN via UBSWCHZH80A val dt 270124 reference TXN938584 for Tuition fees semester 2 chrgs BEN (charges "
+        },
+        "string_wrong_value": {
+          "id": "syn-00166",
+          "field": "sender_reference",
+          "gold": "TXN578958",
+          "pred": "TXN610765",
+          "gold_errors": [],
+          "text": "msg below, pls check\n:20:TXN578958\n:23B:CRED\n:32A:260608JPY6052149,00\n:50K:/61894401584\nDivya Khan\n:57A:CITIUS33\n:59:/NL115718321991457524\nFatima Schmidt\n4th Floor, Nariman Point, Tokyo 100-0005 JP\n:70:Licence fee Q3 2026\n:71A:SHA\n...(rest cut off)"
+        },
+        "enum_wrong_value": {
+          "id": "syn-00166",
+          "field": "currency",
+          "gold": "JPY",
+          "pred": "USD",
+          "gold_errors": [],
+          "text": "msg below, pls check\n:20:TXN578958\n:23B:CRED\n:32A:260608JPY6052149,00\n:50K:/61894401584\nDivya Khan\n:57A:CITIUS33\n:59:/NL115718321991457524\nFatima Schmidt\n4th Floor, Nariman Point, Tokyo 100-0005 JP\n:70:Licence fee Q3 2026\n:71A:SHA\n...(rest cut off)"
+        },
+        "amount_misparsed": {
+          "id": "syn-00166",
+          "field": "amount",
+          "gold": 6052149.0,
+          "pred": 5877.79,
+          "gold_errors": [],
+          "text": "msg below, pls check\n:20:TXN578958\n:23B:CRED\n:32A:260608JPY6052149,00\n:50K:/61894401584\nDivya Khan\n:57A:CITIUS33\n:59:/NL115718321991457524\nFatima Schmidt\n4th Floor, Nariman Point, Tokyo 100-0005 JP\n:70:Licence fee Q3 2026\n:71A:SHA\n...(rest cut off)"
+        },
+        "hallucinated_absent_field": {
+          "id": "syn-00166",
+          "field": "ordering_customer.address",
+          "gold": null,
+          "pred": "Taunusanlage 12, Hong Kong HK",
+          "gold_errors": [],
+          "text": "msg below, pls check\n:20:TXN578958\n:23B:CRED\n:32A:260608JPY6052149,00\n:50K:/61894401584\nDivya Khan\n:57A:CITIUS33\n:59:/NL115718321991457524\nFatima Schmidt\n4th Floor, Nariman Point, Tokyo 100-0005 JP\n:70:Licence fee Q3 2026\n:71A:SHA\n...(rest cut off)"
+        },
+        "repaired_impossible_value": {
+          "id": "syn-00260",
+          "field": "account_with_institution",
+          "gold": null,
+          "pred": "CHASUS",
+          "gold_errors": [
+            "INVALID_BIC: account_with_institution: CHASUS is not a valid BIC"
+          ],
+          "text": "Hello,\n\nPlease process the below payment today.\nOur ref: PAY-2025-66883\nAmnt: USD 6,322.05\nVal dt: 261014\nDebit a/c / remitter: account 118863278-80, Divya Fernandes, 12 MG Road, Pune 411001 IN\nOur bank: UTIBINBB\nBene: GB64503328502007890051, Aisha Sharma\nBeneficary bank SWIFT: CHASUS\nPurpose: Rent "
+        },
+        "string_partial": {
+          "id": "syn-00382",
+          "field": "remittance_info",
+          "gold": "Software subscription 9763",
+          "pred": "for software subscription 9763",
+          "gold_errors": [],
+          "text": "hey send 312600.00 inr to account 721068020485365 elena sharma from fr41573696030778742633 saffron motors llp taunusanlage 12, tokyo 100-0005 jp val dt 2027-02-16 reference ops/apr/601 for software subscription 9763 charge shared"
+        }
+      },
+      "error_flags": {
+        "INVALID_CURRENCY": {
+          "gold": 10,
+          "pred": 10,
+          "recall": 1.0,
+          "precision": 1.0,
+          "outcomes": {
+            "flagged_correctly": 10
+          }
+        },
+        "INVALID_DATE": {
+          "gold": 18,
+          "pred": 18,
+          "recall": 1.0,
+          "precision": 1.0,
+          "outcomes": {
+            "flagged_correctly": 18
+          }
+        },
+        "INVALID_BIC": {
+          "gold": 7,
+          "pred": 6,
+          "recall": 0.8571428571428571,
+          "precision": 1.0,
+          "outcomes": {
+            "not_flagged_copied_invalid_value": 1,
+            "flagged_correctly": 6
+          }
+        },
+        "NON_POSITIVE_AMOUNT": {
+          "gold": 12,
+          "pred": 11,
+          "recall": 0.9166666666666666,
+          "precision": 1.0,
+          "outcomes": {
+            "flagged_correctly": 11,
+            "not_flagged_repaired_or_invented": 1
+          }
+        },
+        "INVALID_CHARGES": {
+          "gold": 16,
+          "pred": 17,
+          "recall": 1.0,
+          "precision": 0.9411764705882353,
+          "outcomes": {
+            "flagged_correctly": 16
+          }
+        },
+        "MISSING_REQUIRED": {
+          "gold": 6,
+          "pred": 6,
+          "recall": 1.0,
+          "precision": 1.0,
+          "outcomes": {
+            "flagged_correctly": 6
+          }
+        }
+      },
+      "false_alarm_rate_on_clean_examples": 0.004329004329004329,
+      "clean_examples": 231,
+      "unparsed_or_missing": 0
+    }
+  }
+}

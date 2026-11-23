@@ -72,6 +72,20 @@ Full table, commands and dataset sizes are in **[RESULTS.md](RESULTS.md)**. Test
 
 Headline: field accuracy **62.6% → 94.2%** (base → smoke-fine-tuned), valid JSON **100%**, **22.4 tok/s** on 1 CPU thread. Error flagging is still weak after the smoke run (recall 7.2%). See RESULTS.md.
 
+**Eval round 2** ([RESULTS.md § Eval round 2](RESULTS.md#eval-round-2-added-2026-11-23)):
+
+- **Out-of-distribution set** (100 synthetic examples, new seed, 4 unseen formats, OCR-style label noise,
+  distractor remarks, new date formats and new impossible values): the fine-tuned model drops **94.2% → 66.7%**.
+  The base model drops 62.6% → 47.5% and Claude Haiku 99.1% → 98.1%. Fine-tuning still adds +19 pp over the base
+  model, but most of the in-distribution score is memorised format. On MT103 text with **shuffled, lower-case tags**
+  the fine-tuned model reaches only 44.9%, which suggests it maps fields by position, not by tag.
+- **Fields that still fail** (test split): 57A (80.3%), 52A (87.7%), 23B (89.7%): dropped, or 52A/57A swapped.
+  Then amount, charges and value_date (90–91%). The top error type is "value present but returned null" (38% of errors).
+- **Why error recall is 7.2%:** the smoke model learnt the *format* of error strings but not *when* to emit them.
+  It flags valid values (`SHA is not OUR/SHA/BEN`, a 31% false-alarm rate on clean examples) and silently "repairs"
+  32% of real errors (`2027-00-12` → `2027-01-12`, `USX` → `USD`). MISSING_REQUIRED is never flagged. The full Kaggle
+  run must fix these, with oversampled error examples; RESULTS.md has the breakdown by error code.
+
 ## Limitations
 
 - **Synthetic data.** Real MT103s and real ops emails are far more varied: other languages, scanned PDFs,
@@ -79,13 +93,15 @@ Headline: field accuracy **62.6% → 94.2%** (base → smoke-fine-tuned), valid 
   a model learns *this generator's* distribution, not production accuracy.
 - **The fine-tuned model is a CPU smoke run** (300 training examples seen, 0.125 epoch). A full GPU run should do
   better, especially on error flagging, which the smoke model mostly hasn't learnt yet.
-- The test split shares templates and vocabulary with training, so it measures in-distribution generalisation.
+- The test split shares templates and vocabulary with training, so it measures in-distribution generalisation. The OOD set (`data/ood_test.jsonl`) is a first check outside that, but it is still synthetic and small (n=100; 3–12 examples per error code).
 - Exact-match scoring is strict: a correct but differently-written address counts as wrong.
 - Latency and tokens/sec were measured on a shared 2 vCPU VPS with Ollama capped at 1 CPU, while other services were running.
 
 ## What I'd do next
 
 - Run the full QLoRA on Kaggle (1.5B, 3 epochs) and add that row; compare 0.5B vs 1.5B for size versus accuracy.
+- Make training robust to format: shuffle MT103 tag order, lower-case tags, add narrative/table renderers and OCR noise, then re-check on the OOD set (`make eval-ood analyze`).
+- Add a rule-based post-check (ISO-4217, BIC regex, real date, amount > 0, required fields) that turns invalid values into `errors` entries, so error recall no longer depends only on the model.
 - **Constrained JSON decoding** (Ollama `format` with the JSON schema, or llama.cpp GBNF grammar) so that schema-valid output is guaranteed by construction.
 - Run it on a **Raspberry Pi 5** (q4_K_M 0.5B is about 400 MB) and report tokens/sec there.
 - More fields (33B, 36, 56A, 72, 59F structured addresses), IBAN/BIC directory checks, multi-payment inputs.

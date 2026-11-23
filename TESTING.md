@@ -27,7 +27,7 @@ You should see pip finish without errors. If port 21434 or 18000 is taken on you
 ```powershell
 .venv\Scripts\python -m pytest -q tests          # or: make test
 ```
-Expected: `33 passed` (schema, 100% target validity, split overlap, generator determinism, eval on
+Expected: `50 passed` (schema, 100% target validity, split overlap, generator determinism, eval on
 5 examples with a mock model, and the `/extract` API with a mocked Ollama).
 
 ## 3. Start Ollama + the API, pull the base model
@@ -90,6 +90,23 @@ Name the run differently (e.g. `--name ft-qwen2.5-1.5b-qlora`) so it doesn't ove
 
 Open `results/eval_table.md` (or `RESULTS.md`): base vs fine-tuned vs Claude Haiku, on field accuracy,
 valid-JSON rate, error-flag precision/recall and tokens/sec.
+
+### 8b. Eval round 2: OOD set, per-field errors, error flags (optional, about 1 h on CPU)
+
+```bash
+python data/generate_ood.py --n 100 --seed 20261123
+```
+You should see a JSON manifest with `"n": 100`, 4 styles and 43 examples with errors. The file is identical to the
+committed `data/ood_test.jsonl` (a test checks this). Then, with Ollama up and the fine-tuned model created (step 7):
+
+```bash
+make eval-ood     # base + fine-tuned via Ollama; Haiku needs a logged-in `claude` CLI (cached results are committed)
+make analyze      # no model calls: reads results/cache/*.jsonl
+```
+You should see `results/eval_table_ood.md` (fine-tuned field accuracy about 66.7%) and `results/analysis_test.md` /
+`results/analysis_ood.md` with per-field error types and a per-error-code table (ok / wrong / repaired / copied / null).
+On Windows without `make`, copy the commands under `eval-ood:` and `analyze:` in the Makefile. `make analyze` alone
+works straight after cloning, because the cached outputs are committed.
 
 ## 9. Clean up
 

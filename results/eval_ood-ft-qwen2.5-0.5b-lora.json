@@ -1,0 +1,1439 @@
+{
+  "summary": {
+    "n": 100,
+    "valid_json_rate": 0.99,
+    "schema_valid_rate": 0.36,
+    "field_accuracy_macro": 0.6666666666666665,
+    "field_accuracy": {
+      "sender_reference": 0.61,
+      "bank_operation_code": 0.79,
+      "value_date": 0.64,
+      "currency": 0.85,
+      "amount": 0.76,
+      "ordering_customer.account": 0.59,
+      "ordering_customer.name": 0.71,
+      "ordering_customer.address": 0.76,
+      "ordering_institution": 0.39,
+      "account_with_institution": 0.46,
+      "beneficiary.account": 0.67,
+      "beneficiary.name": 0.67,
+      "beneficiary.address": 0.75,
+      "remittance_info": 0.73,
+      "charges": 0.62
+    },
+    "all_fields_correct_rate": 0.05,
+    "error_precision": 0.021739130434782608,
+    "error_recall": 0.023255813953488372,
+    "error_detect_precision": 0.41304347826086957,
+    "error_detect_recall": 0.4418604651162791,
+    "latency_mean_s": 8.950941376686096,
+    "latency_p50_s": 8.951600790023804,
+    "latency_p95_s": 10.361624002456665,
+    "tokens_per_sec": 24.832667460543963,
+    "name": "ood-ft-qwen2.5-0.5b-lora",
+    "backend": "ollama",
+    "model": "mt103-extractor",
+    "fewshot": false,
+    "prompt": "ft",
+    "data": "data/ood_test.jsonl",
+    "date": "2026-11-23",
+    "command": "evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-ft-qwen2.5-0.5b-lora --ollama-url http://127.0.0.1:21434"
+  },
+  "per_example": [
+    {
+      "id": "ood-0000",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0001",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0002",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0003",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0004",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.account"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0005",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0006",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_institution",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0007",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0008",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0009",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0010",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0011",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0012",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0013",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0014",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0015",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0016",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0017",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "bank_operation_code",
+        "beneficiary.account",
+        "beneficiary.name",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0018",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0019",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0020",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0021",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0022",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0023",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0024",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0025",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0026",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0027",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0028",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0029",
+      "valid_json": false,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0030",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "currency",
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0031",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "currency",
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0032",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0033",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0034",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0035",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "amount",
+        "remittance_info"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0036",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "bank_operation_code",
+        "currency",
+        "amount",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0037",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0038",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "amount",
+        "beneficiary.account",
+        "beneficiary.name",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0039",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0040",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0041",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_institution",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0042",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "currency",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0043",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "amount",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0044",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0045",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0046",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0047",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0048",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "currency",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0049",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0050",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0051",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0052",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0053",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.name",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0054",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0055",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0056",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "value_date",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0057",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0058",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0059",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "currency",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0060",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "currency",
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0061",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0062",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0063",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0064",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0065",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0066",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0067",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_institution",
+        "beneficiary.account",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0068",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0069",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0070",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0071",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0072",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0073",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date",
+        "amount",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0074",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0075",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0076",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0077",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0078",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0079",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0080",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0081",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0082",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "currency",
+        "ordering_customer.account",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0083",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "amount",
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0084",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0085",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0086",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "beneficiary.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0087",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "currency",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0088",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0089",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0090",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "amount",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0091",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0092",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0093",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "amount",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0094",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0095",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0096",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "currency",
+        "amount",
+        "ordering_institution",
+        "account_with_institution",
+        "remittance_info"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0097",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0098",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "value_date",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0099",
+      "valid_json": true,
+      "schema_valid": false,
+      "fields_wrong": [
+        "sender_reference",
+        "bank_operation_code",
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    }
+  ]
+}
