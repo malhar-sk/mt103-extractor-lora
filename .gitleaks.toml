@@ -7,4 +7,5 @@ useDefault = true
 description = "SHA-1 cache keys in eval cache"
 paths = ['''results/cache/.*\.jsonl''']
 regexTarget = "match"
+condition = "AND"
 regexes = ['''key": "[0-9a-f]{40}"''']
