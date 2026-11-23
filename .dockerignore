@@ -1,0 +1,8 @@
+.venv
+models
+data
+results
+logs
+third_party
+.git
+notebooks

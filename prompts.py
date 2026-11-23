@@ -75,3 +75,13 @@ def parse_output(raw: str):
                 except Exception:
                     return None
     return None
+
+
+# Short system prompt used for the FINE-TUNED model (training, Ollama Modelfile, eval with
+# --prompt ft). The format and error rules are learned from data, so the prompt stays tiny:
+# that is what makes the fine-tuned model much cheaper per request than few-shot prompting.
+FT_SYSTEM = "Extract the payment as MT103 JSON {fields, errors}. Null for absent fields; flag impossible values in errors."
+
+
+def ft_messages(text: str) -> list[dict]:
+    return [{"role": "system", "content": FT_SYSTEM}, {"role": "user", "content": text}]

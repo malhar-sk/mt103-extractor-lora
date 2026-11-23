@@ -29,7 +29,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from prompts import FEWSHOT_IDS, chat_messages, parse_output, target_str  # noqa: E402
+from prompts import FEWSHOT_IDS, chat_messages, ft_messages, parse_output, target_str  # noqa: E402
 from schema import Extraction, error_keys  # noqa: E402
 
 SCORED_FIELDS = (
@@ -120,7 +120,7 @@ def aggregate(scores: list[dict], lat: list[float], toks: list[int], gen_s: list
 # ---------------------------------------------------------------- backends
 def call_ollama(msgs, model, url, num_ctx):
     body = json.dumps({"model": model, "messages": msgs, "stream": False,
-                       "options": {"temperature": 0, "num_predict": 600, "num_ctx": num_ctx,
+                       "options": {"temperature": 0, "num_predict": 600, "num_ctx": num_ctx, "num_thread": 1,
                                    "seed": 0}}).encode()
     req = urllib.request.Request(url.rstrip("/") + "/api/chat", data=body,
                                  headers={"Content-Type": "application/json"})
@@ -191,7 +191,7 @@ def run(args) -> dict:
         return hashlib.sha1(json.dumps([args.backend, args.model, msgs], ensure_ascii=False).encode()).hexdigest()
 
     def work(ex):
-        msgs = chat_messages(ex["text"], fewshot)
+        msgs = ft_messages(ex["text"]) if args.prompt == "ft" else chat_messages(ex["text"], fewshot)
         k = key(ex, msgs)
         if k in cache:
             return ex, cache[k], True
@@ -238,7 +238,7 @@ def run(args) -> dict:
                             "err_fp": s["err_fp"], "err_fn": s["err_fn"]})
     summary = aggregate(scores, lat, toks, gen)
     summary.update({"name": args.name, "backend": args.backend, "model": args.model,
-                    "fewshot": bool(args.fewshot), "data": str(args.data),
+                    "fewshot": bool(args.fewshot), "prompt": args.prompt, "data": str(args.data),
                     "date": dt.date.today().isoformat(), "command": " ".join(sys.argv)})
     out = Path(args.out_dir) / f"eval_{args.name}.json"
     out.write_text(json.dumps({"summary": summary, "per_example": per_example}, indent=2, ensure_ascii=False))
@@ -254,6 +254,8 @@ def parse_args(argv=None):
     ap.add_argument("--data", default=str(ROOT / "data" / "test.jsonl"))
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--fewshot", action="store_true")
+    ap.add_argument("--prompt", choices=["full", "ft"], default="full",
+                    help="full = long instruction prompt (+ few-shot); ft = short prompt the LoRA model was trained with")
     ap.add_argument("--ollama-url", default=os.environ.get("OLLAMA_URL", "http://127.0.0.1:21434"))
     ap.add_argument("--num-ctx", type=int, default=4096)
     ap.add_argument("--workers", type=int, default=4)
