@@ -15,3 +15,11 @@ logs/*.log
 results/cache/*.tmp
 train/runs/
 *.zip
+# the CPU smoke adapter (35 MB) is committed; its tokenizer copy is not (same as base)
+!models/adapter/
+models/adapter/*
+!models/adapter/adapter_model.safetensors
+!models/adapter/adapter_config.json
+!models/adapter/TRAINING_INFO.json
+!models/adapter/chat_template.jinja
+!models/adapter/tokenizer_config.json

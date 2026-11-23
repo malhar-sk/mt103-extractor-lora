@@ -1,0 +1,7 @@
+{
+  "mode": "smoke",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "steps": 150,
+  "epochs": 0.125,
+  "label": "CPU smoke run, not fully trained"
+}

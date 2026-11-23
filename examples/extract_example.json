@@ -1,0 +1,87 @@
+{
+  "recorded": "2026-11-23",
+  "endpoint": "POST http://127.0.0.1:18000/extract",
+  "note": "real run on the build VPS (CPU smoke-trained model); inputs are synthetic",
+  "examples": [
+    {
+      "request": {
+        "text": "Hi team, pls send Rs 1,25,000.50 to Coromandel Logistics Pvt Ltd a/c 54150945237 at HDFCINBB, value 05/12/2026, our ref TXN778812, charges shared. Remitter: Helix Pharma Ltd a/c 726045614514. Invoice INV 2231. Thx"
+      },
+      "response": {
+        "valid_json": true,
+        "schema_valid": true,
+        "fields": {
+          "sender_reference": "TXN778812",
+          "bank_operation_code": null,
+          "value_date": "2026-12-05",
+          "currency": "INR",
+          "amount": 125000.5,
+          "ordering_customer": {
+            "account": "726045614514",
+            "name": "Helix Pharma Ltd",
+            "address": null
+          },
+          "ordering_institution": null,
+          "account_with_institution": "HDFCINBB",
+          "beneficiary": {
+            "account": "54150945237",
+            "name": "Coromandel Logistics Pvt Ltd",
+            "address": null
+          },
+          "remittance_info": "INV 2231",
+          "charges": "SHA"
+        },
+        "errors": [],
+        "validation_errors": [],
+        "model_used": "mt103-extractor",
+        "fallback": false,
+        "note": "fine-tuned model",
+        "latency_s": 10.169,
+        "output_tokens": 146,
+        "tokens_per_sec": 22.45
+      }
+    },
+    {
+      "request": {
+        "text": "Urgent: wire USX 5,000.00 to Orion Motors Inc acct 80164166609 bank CHASUS33 value 2026-13-02, ref PAY-77812, fees OUR. From Kenji Gupta /NL646501977009764520"
+      },
+      "response": {
+        "valid_json": true,
+        "schema_valid": false,
+        "fields": {
+          "sender_reference": "PAY-77812",
+          "bank_operation_code": null,
+          "value_date": "2026-13-02",
+          "currency": "USD",
+          "amount": 5000.0,
+          "ordering_customer": {
+            "account": "NL646501977009764520",
+            "name": "Kenji Gupta",
+            "address": null
+          },
+          "ordering_institution": null,
+          "account_with_institution": "CHASUS33",
+          "beneficiary": {
+            "account": "80164166609",
+            "name": "Orion Motors Inc",
+            "address": null
+          },
+          "remittance_info": null,
+          "charges": "OUR"
+        },
+        "errors": [
+          "INVALID_DATE: value_date: 2026-13-02 is not a real calendar date"
+        ],
+        "validation_errors": [
+          "fields.value_date: Value error, month must be in 1..12"
+        ],
+        "model_used": "mt103-extractor",
+        "fallback": false,
+        "note": "fine-tuned model",
+        "latency_s": 8.248,
+        "output_tokens": 164,
+        "tokens_per_sec": 23.39
+      }
+    }
+  ]
+}

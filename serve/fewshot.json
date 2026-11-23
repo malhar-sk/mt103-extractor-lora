@@ -1,0 +1,120 @@
+[
+ {
+  "id": "syn-00004",
+  "synthetic": true,
+  "text": "Hi\n\nPlease process the below pymt today.\nOur reference: TXN050287\nAmt: INR 7031659.20\nValue date: 13-Jun-26\nDebit acc / remitter: 25702316331186, Zenith Steel Pte Ltd, 16 Bd des Italiens, Hong Kong HK\nOur bank: HSBCHKHH\nBene: account CH765276274304219439, Priya Chen, Unit 5B, Hi-Tech Park, Paris 75009 FR\nPurpose: Rent Sep 2026 office\nCharges: ours\nOp code CRED\n\nBest,\nOmar Gupta",
+  "target": {
+   "fields": {
+    "sender_reference": "TXN050287",
+    "bank_operation_code": "CRED",
+    "value_date": "2026-06-13",
+    "currency": "INR",
+    "amount": 7031659.2,
+    "ordering_customer": {
+     "account": "25702316331186",
+     "name": "Zenith Steel Pte Ltd",
+     "address": "16 Bd des Italiens, Hong Kong HK"
+    },
+    "ordering_institution": "HSBCHKHH",
+    "account_with_institution": null,
+    "beneficiary": {
+     "account": "CH765276274304219439",
+     "name": "Priya Chen",
+     "address": "Unit 5B, Hi-Tech Park, Paris 75009 FR"
+    },
+    "remittance_info": "Rent Sep 2026 office",
+    "charges": "OUR"
+   },
+   "errors": []
+  }
+ },
+ {
+  "id": "syn-00012",
+  "synthetic": true,
+  "text": "@ops send INR 76,53,981.08 to acc GB25198891041870031810 Chloe Dubois at COBADEFFXXX from acc 54883258045846 Deccan Pharma Pte Ltd 16 Bd des Italiens, London EC2V 7HN GB via HDFCINBB value date 19 Mar 2026 reference TXN736416 charge OUR (CRED)",
+  "target": {
+   "fields": {
+    "sender_reference": "TXN736416",
+    "bank_operation_code": "CRED",
+    "value_date": "2026-03-19",
+    "currency": "INR",
+    "amount": 7653981.08,
+    "ordering_customer": {
+     "account": "54883258045846",
+     "name": "Deccan Pharma Pte Ltd",
+     "address": "16 Bd des Italiens, London EC2V 7HN GB"
+    },
+    "ordering_institution": "HDFCINBB",
+    "account_with_institution": "COBADEFFXXX",
+    "beneficiary": {
+     "account": "GB25198891041870031810",
+     "name": "Chloe Dubois",
+     "address": null
+    },
+    "remittance_info": null,
+    "charges": "OUR"
+   },
+   "errors": []
+  }
+ },
+ {
+  "id": "syn-00000",
+  "synthetic": true,
+  "text": "pasted from SWIFT Alliance:\n:20:PAY-2025-79003\n:23B:CRED\n:32A:270112HKD228420,99\n:50K:/GB900312984269639931\nOrion Exports Ltd\nUnit 5B, Hi-Tech Park, Chennai 600002 IN\n:57A:INGBNL2A\n:59:/878384072-26\nChloe Müller\nTaunusanlage 12, Bengaluru 560001 IN\n:71A:SHA",
+  "target": {
+   "fields": {
+    "sender_reference": "PAY-2025-79003",
+    "bank_operation_code": "CRED",
+    "value_date": "2027-01-12",
+    "currency": "HKD",
+    "amount": 228420.99,
+    "ordering_customer": {
+     "account": "GB900312984269639931",
+     "name": "Orion Exports Ltd",
+     "address": "Unit 5B, Hi-Tech Park, Chennai 600002 IN"
+    },
+    "ordering_institution": null,
+    "account_with_institution": "INGBNL2A",
+    "beneficiary": {
+     "account": "878384072-26",
+     "name": "Chloe Müller",
+     "address": "Taunusanlage 12, Bengaluru 560001 IN"
+    },
+    "remittance_info": null,
+    "charges": "SHA"
+   },
+   "errors": []
+  }
+ },
+ {
+  "id": "syn-00005",
+  "synthetic": true,
+  "text": "Ticket: OPS-5511\nRef: TXN610765\nCcy/Amt: $ | 5,877.79\nVD: 2026-11-02\nOrdering cust: acc CH82116519589162585282 ; Helix Exports Pvt Ltd ; Taunusanlage 12, Hong Kong HK\nBene: a/c 921900869150 ; Arjun Iyer\nAWI (57A): COBADEFFXXX\nDetails: PO 4147 advance payment\nChg: HALF",
+  "target": {
+   "fields": {
+    "sender_reference": "TXN610765",
+    "bank_operation_code": null,
+    "value_date": "2026-11-02",
+    "currency": "USD",
+    "amount": 5877.79,
+    "ordering_customer": {
+     "account": "CH82116519589162585282",
+     "name": "Helix Exports Pvt Ltd",
+     "address": "Taunusanlage 12, Hong Kong HK"
+    },
+    "ordering_institution": null,
+    "account_with_institution": "COBADEFFXXX",
+    "beneficiary": {
+     "account": "921900869150",
+     "name": "Arjun Iyer",
+     "address": null
+    },
+    "remittance_info": "PO 4147 advance payment",
+    "charges": null
+   },
+   "errors": [
+    "INVALID_CHARGES: charges: HALF is not OUR/SHA/BEN"
+   ]
+  }
+ }
+]
