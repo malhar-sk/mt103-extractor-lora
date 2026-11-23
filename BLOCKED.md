@@ -1,6 +1,6 @@
 # BLOCKED.md
 
-## 1. CI workflow is not at `.github/workflows/ci.yml` (push token lacks `workflow` scope)
+## 1. ~~CI workflow not at .github/workflows~~ RESOLVED 2026-11-23: token given workflow scope, file moved to `.github/workflows/ci.yml`
 - **What:** GitHub rejects pushes that add files under `.github/workflows/` when the token has no `workflow` scope,
   and the build host's token has only `repo` scope.
 - **What I did:** the workflow is committed at `ci/github-workflows/ci.yml` (runs `pytest` with mocked LLM, no secrets).
