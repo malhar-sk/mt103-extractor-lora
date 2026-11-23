@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# model artefacts: large, rebuild with make train / make merge
+models/*
+!models/.gitkeep
+!models/README.md
+*.gguf
+*.safetensors
+*.bin
+third_party/
+logs/*.log
+results/cache/*.tmp
+train/runs/
+*.zip

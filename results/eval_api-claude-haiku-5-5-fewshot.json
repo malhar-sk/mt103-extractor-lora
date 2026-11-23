@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "n": 2,
+    "valid_json_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "field_accuracy_macro": 1.0,
+    "field_accuracy": {
+      "sender_reference": 1.0,
+      "bank_operation_code": 1.0,
+      "value_date": 1.0,
+      "currency": 1.0,
+      "amount": 1.0,
+      "ordering_customer.account": 1.0,
+      "ordering_customer.name": 1.0,
+      "ordering_customer.address": 1.0,
+      "ordering_institution": 1.0,
+      "account_with_institution": 1.0,
+      "beneficiary.account": 1.0,
+      "beneficiary.name": 1.0,
+      "beneficiary.address": 1.0,
+      "remittance_info": 1.0,
+      "charges": 1.0
+    },
+    "all_fields_correct_rate": 1.0,
+    "error_precision": 1.0,
+    "error_recall": 1.0,
+    "error_detect_precision": 1.0,
+    "error_detect_recall": 1.0,
+    "latency_mean_s": 4.917596817016602,
+    "latency_p50_s": 4.917596817016602,
+    "latency_p95_s": 5.7896974086761475,
+    "tokens_per_sec": 210.46077210460774,
+    "name": "api-claude-haiku-5-5-fewshot",
+    "backend": "claude-cli",
+    "model": "claude-haiku-5-5",
+    "fewshot": true,
+    "data": "/home/jivha/builds/mt103-extractor-lora/data/test.jsonl",
+    "date": "2026-11-23",
+    "command": "evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --limit 2 --name api-claude-haiku-5-5-fewshot"
+  },
+  "per_example": [
+    {
+      "id": "syn-00003",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00027",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    }
+  ]
+}
