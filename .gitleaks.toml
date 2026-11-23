@@ -1,0 +1,10 @@
+# The eval cache stores a SHA-1 of (model, prompt, example) under "key"; gitleaks' generic-api-key rule
+# flags those hashes. Allowlist only that pattern in the cache files; every other rule still applies.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "SHA-1 cache keys in eval cache"
+paths = ['''results/cache/.*\.jsonl''']
+regexTarget = "match"
+regexes = ['''key": "[0-9a-f]{40}"''']
