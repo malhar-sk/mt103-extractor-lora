@@ -1,0 +1,31 @@
+# LoRA config. `mode` is chosen automatically (full if CUDA is available, else smoke)
+# unless overridden with --mode.
+base_model_cpu: Qwen/Qwen2.5-0.5B-Instruct
+base_model_gpu: Qwen/Qwen2.5-1.5B-Instruct
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+train:
+  lr: 2.0e-4
+  scheduler: cosine
+  warmup_ratio: 0.05
+  max_length: 1024
+  seed: 103
+full:            # GPU: QLoRA 4-bit, 3 epochs over 2400 train examples
+  epochs: 3
+  batch_size: 8
+  grad_accum: 2
+  val_loss_examples: 300
+  val_gen_examples: 50
+  qlora: true
+smoke:           # CPU: prove the pipeline end to end (NOT a fully trained model)
+  max_steps: 150
+  batch_size: 1
+  grad_accum: 2          # effective batch 2 -> 300 training examples seen
+  gradient_checkpointing: true   # keeps RAM under ~2.5 GB on the shared VPS
+  eval_every: 50
+  val_loss_examples: 40
+  val_gen_examples: 20
+  qlora: false
