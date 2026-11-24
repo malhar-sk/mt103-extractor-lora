@@ -4,7 +4,7 @@ OLLAMA_URL ?= http://127.0.0.1:21434
 LLAMA_CPP ?= third_party/llama.cpp
 export OMP_NUM_THREADS ?= 1
 
-.PHONY: help venv venv-train up down data data-ood test eval eval-base eval-api eval-ft eval-ood analyze train merge gguf serve llama-cpp bench
+.PHONY: help venv venv-train up down data data-ood data-v2 test eval eval-base eval-api eval-ft eval-ood eval-pp analyze train merge gguf serve llama-cpp bench kaggle-push
 
 help:
 	@grep -E '^[a-z-]+:' Makefile | cut -d: -f1 | tr '\n' ' '; echo
@@ -50,6 +50,16 @@ eval-ood:                ## the three models on the OOD set (Haiku via the `clau
 	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-ft-qwen2.5-0.5b-lora --ollama-url $(OLLAMA_URL)
 	$(PY) evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --data data/ood_test.jsonl --name ood-base-qwen2.5-0.5b-fewshot --ollama-url $(OLLAMA_URL)
 	$(PY) evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --workers 3 --data data/ood_test.jsonl --name ood-api-claude-haiku-5-5-fewshot
+	$(PY) evals/report.py
+
+eval-pp:                 ## re-score every cached run with postprocess.py (deterministic rules; no model calls)
+	$(PY) evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --name base-qwen2.5-0.5b-fewshot --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --name ft-qwen2.5-0.5b-lora --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --name api-claude-haiku-5-5-fewshot --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --data data/ood_test.jsonl --name ood-base-qwen2.5-0.5b-fewshot --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-ft-qwen2.5-0.5b-lora --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --data data/ood_test.jsonl --name ood-api-claude-haiku-5-5-fewshot --postprocess --cache-only
+	$(PY) evals/pp_delta.py
 	$(PY) evals/report.py
 
 analyze:                 ## per-field error types + error-flag analysis from cached outputs (no model calls)

@@ -1,0 +1,890 @@
+{
+  "summary": {
+    "n": 100,
+    "valid_json_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "field_accuracy_macro": 0.9833333333333333,
+    "field_accuracy": {
+      "sender_reference": 1.0,
+      "bank_operation_code": 1.0,
+      "value_date": 0.99,
+      "currency": 1.0,
+      "amount": 0.91,
+      "ordering_customer.account": 0.97,
+      "ordering_customer.name": 1.0,
+      "ordering_customer.address": 1.0,
+      "ordering_institution": 0.96,
+      "account_with_institution": 0.95,
+      "beneficiary.account": 1.0,
+      "beneficiary.name": 1.0,
+      "beneficiary.address": 1.0,
+      "remittance_info": 1.0,
+      "charges": 0.97
+    },
+    "all_fields_correct_rate": 0.8,
+    "error_precision": 0.9285714285714286,
+    "error_recall": 0.9069767441860465,
+    "error_detect_precision": 0.975,
+    "error_detect_recall": 0.9069767441860465,
+    "latency_mean_s": 6.234417450428009,
+    "latency_p50_s": 5.796744465827942,
+    "latency_p95_s": 9.6231050491333,
+    "tokens_per_sec": 230.7793854994437,
+    "name": "ood-api-claude-haiku-5-5-fewshot+pp",
+    "postprocess": true,
+    "backend": "claude-cli",
+    "model": "claude-haiku-5-5",
+    "fewshot": true,
+    "prompt": "full",
+    "data": "data/ood_test.jsonl",
+    "date": "2026-11-24",
+    "command": "evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --data data/ood_test.jsonl --name ood-api-claude-haiku-5-5-fewshot --postprocess --cache-only"
+  },
+  "per_example": [
+    {
+      "id": "ood-0000",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0001",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0002",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0003",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0004",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0005",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0006",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0007",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0008",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0009",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0010",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0011",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_customer.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0012",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0013",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0014",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0015",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0016",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0017",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0018",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0019",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0020",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0021",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0022",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0023",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0024",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0025",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0026",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0027",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0028",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0029",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0030",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0031",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0032",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0033",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0034",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0035",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0036",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0037",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0038",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0039",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0040",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0041",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0042",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0043",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0044",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0045",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0046",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0047",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0048",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0049",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0050",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0051",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0052",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0053",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0054",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0055",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0056",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0057",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0058",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0059",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0060",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0061",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0062",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0063",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0064",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0065",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0066",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0067",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0068",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0069",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0070",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0071",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0072",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0073",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0074",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0075",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0076",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0077",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0078",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0079",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0080",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0081",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0082",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0083",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0084",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0085",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0086",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0087",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0088",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0089",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0090",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0091",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0092",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0093",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0094",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0095",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0096",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0097",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "ood-0098",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "ood-0099",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    }
+  ]
+}

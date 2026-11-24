@@ -81,3 +81,17 @@ def test_no_models_503(client_factory):
 def test_empty_text_rejected(client_factory):
     c, _ = client_factory(["mt103-extractor"], "")
     assert c.post("/extract", json={"text": ""}).status_code == 422
+
+
+def test_extract_applies_rules_and_keeps_raw_output(client_factory):
+    bad = json.loads(target_str(GOOD))
+    bad["fields"]["currency"] = "$"
+    bad["fields"]["bank_operation_code"] = None
+    bad["errors"] = ["INVALID_CHARGES: charges: SHA is not OUR/SHA/BEN"]  # a false alarm on a valid value
+    c, _ = client_factory(["mt103-extractor"], json.dumps(bad))
+    text = ("pls send $5,000.00 to Orion Motors Inc a/c 2 at CHASUS33, value 23/11/2026, ref TXN000001, "
+            "charges SHA, from Helix Pharma Ltd a/c 1, INV 0001")
+    j = c.post("/extract", json={"text": text}).json()
+    assert j["postprocessed"] is True and not j["schema_valid"]  # schema_valid describes the raw output
+    assert j["model_output"]["fields"]["currency"] == "$"
+    assert j["fields"]["currency"] == "USD" and j["errors"] == []

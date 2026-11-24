@@ -30,6 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from prompts import FEWSHOT_IDS, chat_messages, ft_messages, parse_output, target_str  # noqa: E402
+from postprocess import postprocess  # noqa: E402
 from schema import Extraction, error_keys  # noqa: E402
 
 SCORED_FIELDS = (
@@ -195,6 +196,9 @@ def run(args) -> dict:
         k = key(ex, msgs)
         if k in cache:
             return ex, cache[k], True
+        if args.cache_only:  # scored as a failed call (no output), exactly like the original run's failures
+            return ex, {"key": k, "id": ex["id"], "raw": None, "latency_s": None, "out_tokens": 0, "gen_s": 0,
+                        "error": "not in cache (--cache-only)"}, True
         for attempt in range(3):
             try:
                 if args.backend == "ollama":
@@ -226,6 +230,8 @@ def run(args) -> dict:
     per_example = []
     for ex, res in rows:
         obj = parse_output(res.get("raw"))
+        if args.postprocess:
+            obj = postprocess(obj, ex["text"])
         s = score_one(ex["target"], obj)
         scores.append(s)
         if res.get("latency_s") is not None:
@@ -237,10 +243,11 @@ def run(args) -> dict:
                             "fields_wrong": [k for k, v in s["fields"].items() if not v],
                             "err_fp": s["err_fp"], "err_fn": s["err_fn"]})
     summary = aggregate(scores, lat, toks, gen)
-    summary.update({"name": args.name, "backend": args.backend, "model": args.model,
+    name = args.name + ("+pp" if args.postprocess else "")
+    summary.update({"name": name, "postprocess": bool(args.postprocess), "backend": args.backend, "model": args.model,
                     "fewshot": bool(args.fewshot), "prompt": args.prompt, "data": str(args.data),
                     "date": dt.date.today().isoformat(), "command": " ".join(sys.argv)})
-    out = Path(args.out_dir) / f"eval_{args.name}.json"
+    out = Path(args.out_dir) / f"eval_{name}.json"
     out.write_text(json.dumps({"summary": summary, "per_example": per_example}, indent=2, ensure_ascii=False))
     print(json.dumps({k: v for k, v in summary.items() if k != "field_accuracy"}, indent=2))
     return summary
@@ -261,6 +268,10 @@ def parse_args(argv=None):
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--out-dir", default=str(ROOT / "results"))
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--postprocess", action="store_true",
+                    help="apply postprocess.py (deterministic rules) before scoring; reads the same cache, "
+                         "writes eval_<name>+pp.json")
+    ap.add_argument("--cache-only", action="store_true", help="never call a model; a cache miss is scored as a failed call")
     return ap.parse_args(argv)
 
 

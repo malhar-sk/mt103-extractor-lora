@@ -1,0 +1,2747 @@
+{
+  "summary": {
+    "n": 300,
+    "valid_json_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "field_accuracy_macro": 0.957111111111111,
+    "field_accuracy": {
+      "sender_reference": 0.9933333333333333,
+      "bank_operation_code": 0.8966666666666666,
+      "value_date": 0.9733333333333334,
+      "currency": 1.0,
+      "amount": 0.9366666666666666,
+      "ordering_customer.account": 0.9833333333333333,
+      "ordering_customer.name": 1.0,
+      "ordering_customer.address": 0.9766666666666667,
+      "ordering_institution": 0.88,
+      "account_with_institution": 0.8333333333333334,
+      "beneficiary.account": 0.9833333333333333,
+      "beneficiary.name": 0.9866666666666667,
+      "beneficiary.address": 0.98,
+      "remittance_info": 0.9733333333333334,
+      "charges": 0.96
+    },
+    "all_fields_correct_rate": 0.6366666666666667,
+    "error_precision": 0.5967741935483871,
+    "error_recall": 0.5362318840579711,
+    "error_detect_precision": 0.711864406779661,
+    "error_detect_recall": 0.6086956521739131,
+    "latency_mean_s": 9.391231784025829,
+    "latency_p50_s": 9.275846719741821,
+    "latency_p95_s": 11.117784261703491,
+    "tokens_per_sec": 22.373645333465383,
+    "name": "ft-qwen2.5-0.5b-lora+pp",
+    "postprocess": true,
+    "backend": "ollama",
+    "model": "mt103-extractor",
+    "fewshot": false,
+    "prompt": "ft",
+    "data": "/home/jivha/builds/mt103-extractor-lora/data/test.jsonl",
+    "date": "2026-11-24",
+    "command": "evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --name ft-qwen2.5-0.5b-lora --postprocess --cache-only"
+  },
+  "per_example": [
+    {
+      "id": "syn-00003",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "amount",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00027",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00032",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00040",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00045",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00046",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00049",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00068",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00076",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00080",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00093",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00102",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00106",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00114",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00120",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00129",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00132",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00133",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00144",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00153",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00156",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00160",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00163",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00166",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00167",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00223",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00229",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00236",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00249",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00254",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 2,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00260",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00279",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00285",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00292",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00293",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00294",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00295",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00296",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00301",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00312",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00340",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00346",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00351",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00356",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00359",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00367",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00382",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00387",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00388",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00408",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00410",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "beneficiary.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00419",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00429",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 2,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00433",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00444",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00481",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00483",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00487",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00505",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00506",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00507",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00511",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00512",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00524",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00529",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00541",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "beneficiary.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00546",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00583",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00584",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00594",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00597",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00598",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00602",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00608",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00618",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00630",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00642",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00655",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00656",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00663",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00666",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00668",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00672",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00682",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00684",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00685",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00702",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00704",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00718",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00728",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00729",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00734",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00736",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-00747",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00748",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00762",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00770",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00789",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00804",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00810",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00815",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00819",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00823",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00831",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00849",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00851",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00861",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00864",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00865",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00868",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00886",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00888",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00898",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00901",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00924",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00932",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00938",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "beneficiary.account",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00943",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00957",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00973",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00977",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00979",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00986",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00998",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-00999",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01001",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01002",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01008",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01021",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01033",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01039",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01052",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01058",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01073",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01074",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01105",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01106",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01120",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01129",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01166",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01175",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01189",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01208",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01225",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01242",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01255",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01259",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01264",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01270",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01281",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01319",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01320",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01323",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01350",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01354",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01355",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01356",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01367",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01400",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01428",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01433",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01457",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01484",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01509",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01510",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "amount"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01519",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01523",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01550",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01558",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01582",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01596",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01601",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01602",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01614",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01619",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01677",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01698",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01708",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01710",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01711",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01730",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01749",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01750",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01767",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01788",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01793",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01805",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01809",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01811",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01824",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_customer.account",
+        "beneficiary.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01849",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01852",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01857",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "ordering_customer.address",
+        "ordering_institution",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01880",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01888",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01893",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01897",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01910",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01926",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01932",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01955",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01959",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "remittance_info",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01964",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01984",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-01991",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01996",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-01998",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02004",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02024",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02048",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02062",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02073",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02083",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02100",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02119",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02125",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02126",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02136",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02139",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02140",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02162",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02174",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02189",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02196",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02203",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02217",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02218",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02219",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02225",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02233",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02242",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02252",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02274",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02297",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02299",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02300",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02304",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02313",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02324",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02328",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02354",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02368",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02369",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02371",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02381",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02387",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.address",
+        "beneficiary.address",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02392",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02417",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02421",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02448",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02470",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02495",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02507",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "value_date",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02510",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02511",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02524",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02529",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02532",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02543",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02545",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02552",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "sender_reference",
+        "ordering_customer.address",
+        "beneficiary.name",
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02559",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02561",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02573",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02582",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02586",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02591",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02607",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02618",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code",
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02643",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02660",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02672",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02682",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02684",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02686",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.account"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02693",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02705",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02710",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02723",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02734",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "bank_operation_code"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02749",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02763",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02765",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02779",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02817",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.account",
+        "beneficiary.name",
+        "charges"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02824",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02842",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02863",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02870",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02913",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02920",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02923",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02933",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02942",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02947",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02957",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02965",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount",
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "syn-02980",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02993",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "syn-02997",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    }
+  ]
+}

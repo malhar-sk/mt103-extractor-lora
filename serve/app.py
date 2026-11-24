@@ -18,10 +18,13 @@ from pydantic import BaseModel, Field, ValidationError
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from postprocess import postprocess as rule_postprocess  # noqa: E402
 from prompts import FEWSHOT_IDS, chat_messages, ft_messages, parse_output  # noqa: E402
 from schema import Extraction  # noqa: E402
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:21434")
+# Deterministic rules from postprocess.py on top of the model output (POSTPROCESS=0 turns them off).
+POSTPROCESS = os.environ.get("POSTPROCESS", "1").lower() not in ("0", "false", "no")
 FT_MODEL = os.environ.get("FT_MODEL", "mt103-extractor")
 BASE_MODEL = os.environ.get("BASE_MODEL", "qwen2.5:0.5b-instruct")
 FEWSHOT_PATH = Path(os.environ.get("FEWSHOT_PATH", ROOT / "serve" / "fewshot.json"))
@@ -69,20 +72,31 @@ def health():
         return {"status": "degraded", "ollama": OLLAMA_URL, "error": str(e)[:200]}
 
 
-def postprocess(raw: str) -> dict:
-    """Parse + validate. Invalid fields are not silently fixed: validation problems are reported."""
+def postprocess(raw: str, text: str = "", rules: bool = False) -> dict:
+    """Parse + validate the model output.
+
+    valid_json / schema_valid / validation_errors always describe the RAW model output, so its mistakes
+    stay visible. With rules=True, `fields` / `errors` come from the deterministic rules in postprocess.py
+    (normalise, validate, check against the source text) and the raw output is kept as `model_output`.
+    """
     obj = parse_output(raw)
     if not isinstance(obj, dict):
         return {"valid_json": False, "schema_valid": False, "fields": None, "errors": [],
-                "validation_errors": ["model output was not valid JSON"]}
+                "validation_errors": ["model output was not valid JSON"], "postprocessed": False}
     try:
         ext = Extraction.model_validate(obj)
-        return {"valid_json": True, "schema_valid": True, "fields": ext.fields.model_dump(),
-                "errors": ext.errors, "validation_errors": []}
+        res = {"valid_json": True, "schema_valid": True, "fields": ext.fields.model_dump(),
+               "errors": ext.errors, "validation_errors": []}
     except ValidationError as e:
         msgs = [f"{'.'.join(str(x) for x in err['loc'])}: {err['msg']}" for err in e.errors()]
-        return {"valid_json": True, "schema_valid": False, "fields": obj.get("fields"),
-                "errors": obj.get("errors", []), "validation_errors": msgs}
+        res = {"valid_json": True, "schema_valid": False, "fields": obj.get("fields"),
+               "errors": obj.get("errors", []), "validation_errors": msgs}
+    res["postprocessed"] = False
+    if rules:
+        pp = rule_postprocess(obj, text)
+        res["model_output"] = {"fields": res["fields"], "errors": res["errors"]}
+        res.update({"fields": pp["fields"], "errors": pp["errors"], "postprocessed": True})
+    return res
 
 
 @app.post("/extract")
@@ -98,7 +112,7 @@ def extract(body: ExtractIn):
         latency = time.time() - t0
     r.raise_for_status()
     out = r.json()
-    res = postprocess(out["message"]["content"])
+    res = postprocess(out["message"]["content"], body.text, rules=POSTPROCESS)
     ev, ed = out.get("eval_count", 0), out.get("eval_duration", 0) / 1e9
     res.update({
         "model_used": model, "fallback": fallback,

@@ -7,10 +7,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from evals.run_eval import SCORED_FIELDS  # noqa: E402
 
-ORDER = ["base-qwen2.5-0.5b-fewshot", "ft-qwen2.5-0.5b-lora", "api-claude-haiku-5-5-fewshot"]
+ORDER = ["base-qwen2.5-0.5b-fewshot", "base-qwen2.5-0.5b-fewshot+pp", "ft-qwen2.5-0.5b-lora", "ft-qwen2.5-0.5b-lora+pp",
+         "api-claude-haiku-5-5-fewshot", "api-claude-haiku-5-5-fewshot+pp"]
 LABEL = {"base-qwen2.5-0.5b-fewshot": "Base Qwen2.5-0.5B-Instruct (Ollama q4_K_M, 4-shot prompt)",
          "ft-qwen2.5-0.5b-lora": "Fine-tuned Qwen2.5-0.5B LoRA (GGUF q4_K_M, short prompt). **CPU smoke run, not fully trained**",
          "api-claude-haiku-5-5-fewshot": "Claude Haiku 5.5 via API (4-shot prompt), reference ceiling"}
+LABEL.update({
+    "base-qwen2.5-0.5b-fewshot+pp": "Base Qwen2.5-0.5B, 4-shot **+ rules** (`postprocess.py`, same raw outputs)",
+    "ft-qwen2.5-0.5b-lora+pp": "Fine-tuned 0.5B LoRA (CPU smoke run) **+ rules** (`postprocess.py`, same raw outputs)",
+    "api-claude-haiku-5-5-fewshot+pp": "Claude Haiku 5.5 **+ rules** (`postprocess.py`, same raw outputs)"})
 
 
 def pct(x):
