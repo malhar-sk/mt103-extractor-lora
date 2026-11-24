@@ -89,8 +89,8 @@ def _mk(y: int, m: int, d: int):
         return None
 
 
-_B = r"(?<![\w.,/-])"
-_E = r"(?![\w/-]|[.,]\d)"
+_B = r"(?<![\w./-])"  # not inside a longer number (1.234.567) or a reference (PAY-2026-01)
+_E = r"(?![\w/-]|\.\d)"
 DATE_PATTERNS = [
     # (regex, groups -> (y, m, d)); numeric dates are day-first, 4-digit-year-first are Y-M-D
     (re.compile(_B + r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})" + _E), lambda g: (g[0], g[1], g[2])),
@@ -102,8 +102,8 @@ DATE_PATTERNS = [
      lambda g: (g[2], g[0], g[1])),
 ]
 SWIFT_32A = re.compile(r"(?i):32A:\s*(\d{2})(\d{2})(\d{2})(?!\d)")
-SWIFT_32A_FULL = re.compile(r"(?im):32A:[ \t]*(?P<date>[^\n]*)(?<![A-Z])(?P<ccy>[A-Z]{3,5})[ \t]*[-(]?\d")
-YYMMDD = re.compile(r"(?<![\w.,/-])(2\d)(\d{2})(\d{2})(?![\w/-]|[.,]\d)")
+SWIFT_32A_FULL = re.compile(r"(?im):32A:[ \t]*(?P<date>[^\n]*)(?<![A-Z])(?P<ccy>[A-Z]{3,5})[ \t]*[-−(]?\d")
+YYMMDD = re.compile(_B + r"(2\d)(\d{2})(\d{2})" + _E)
 
 
 def _month(tok: str):
@@ -336,7 +336,8 @@ def postprocess(obj, text: str):
     if a is not None:
         a = parse_number(a) if isinstance(a, str) else (float(a) if isinstance(a, (int, float)) and not isinstance(a, bool) else None)
     if a is not None:
-        cands = text_amounts(text)
+        # whole text, plus each CSV-like cell (a comma after a date must not glue it to the next amount)
+        cands = text_amounts(text) + [c for cell in re.split(r'[,;\t\n"|]', text) for c in text_amounts(cell)]
         pos = [x for x, _, neg, tol in cands if not neg and abs(x - a) <= tol]
         negs = [x for x, _, neg, tol in cands if neg and abs(abs(x) - abs(a)) <= tol]
         if a <= 0:
