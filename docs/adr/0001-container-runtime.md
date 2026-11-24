@@ -26,7 +26,7 @@ Keep **Docker** as the documented default, and treat the **Compose file as the c
 
 ## Podman compatibility
 
-**Not tested yet.** The compose file uses only the standard Compose spec, so it should run under `podman-compose`, but that has not been verified for this repo. Ollama runs on CPU here, which should behave the same under Podman; GPU passthrough would need extra Podman setup.
+**Tested.** On 2026-11-24 the unchanged `docker-compose.yml` ran under rootless Podman 4.9.3 with podman-compose 1.3.0 on GitHub Actions (Ubuntu 24.04, no Docker): the API became healthy, Ollama pulled `qwen2.5:0.5b-instruct`, and `/extract` returned valid JSON for a messy payment email (amount, value date and reference all correct) ([run](https://github.com/malhar-sk/mt103-extractor-lora/actions/runs/45316790781)). This was CPU only; GPU passthrough would need extra Podman setup. Re-run it any time from Actions → **podman-compat**.
 
 ## Consequences
 
