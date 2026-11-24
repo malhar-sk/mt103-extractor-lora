@@ -6,7 +6,7 @@ Why: eval round 2 showed the CPU smoke model scores 94.2% on the v1 test split b
 formats (data/ood_test.jsonl): it learnt the v1 templates, e.g. it maps SWIFT fields by position and
 puts a lone BIC into 57A. v2 attacks that with variety, and with cases that a template-matcher gets
 wrong:
-  * 10 renderer families (v1's 5 are kept for ~25% of rows): email, chat log with timestamps, SWIFT
+  * 10 renderer families (v1's 5 are kept for ~16% of rows): email, chat log with timestamps, SWIFT
     with extra/distractor tags (:13C: :33B: :36: :53A: :56A: :71F: :72:), aligned forms, sectioned
     forms with multi-line parties, CSV export, YAML-like block, formal letter, multilingual
     (de/fr/es/Hindi-Latin labels), long forwarded thread with quoted old instructions

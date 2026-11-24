@@ -35,7 +35,7 @@ def main(results=ROOT / "results", prefix="", out_name="eval_table.md"):
             if not s["name"].startswith(prefix):
                 continue
             s = dict(s, name=s["name"][len(prefix):])
-        elif s["name"].startswith("ood-"):
+        elif s["name"].startswith(("ood-", "v2-")):
             continue
         runs[s["name"]] = s
     names = [n for n in ORDER if n in runs] + [n for n in runs if n not in ORDER and not n.startswith(("speed-", "mock", "probe"))]
@@ -60,3 +60,5 @@ if __name__ == "__main__":
     main()
     if any(Path(ROOT / "results").glob("eval_ood-*.json")):
         main(prefix="ood-", out_name="eval_table_ood.md")
+    if any(Path(ROOT / "results").glob("eval_v2-*.json")):
+        main(prefix="v2-", out_name="eval_table_v2.md")

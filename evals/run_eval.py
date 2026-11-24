@@ -178,7 +178,7 @@ def run(args) -> dict:
     test = load_jsonl(args.data)[: args.limit] if args.limit else load_jsonl(args.data)
     fewshot = []
     if args.fewshot:
-        train = {r["id"]: r for r in load_jsonl(Path(args.data).parent / "train.jsonl")}
+        train = {r["id"]: r for r in load_jsonl(ROOT / "data" / "train.jsonl")}  # fixed v1 few-shot ids
         fewshot = [train[i] for i in FEWSHOT_IDS]
     cache_dir = Path(args.out_dir) / "cache"
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -189,10 +189,26 @@ def run(args) -> dict:
             cache[r["key"]] = r
 
     def key(ex, msgs):
-        return hashlib.sha1(json.dumps([args.backend, args.model, msgs], ensure_ascii=False).encode()).hexdigest()
+        model_id = args.model + (f"+{args.adapter}" if args.adapter else "")
+        return hashlib.sha1(json.dumps([args.backend, model_id, msgs], ensure_ascii=False).encode()).hexdigest()
+
+    def msgs_for(ex):
+        return ft_messages(ex["text"]) if args.prompt == "ft" else chat_messages(ex["text"], fewshot)
+
+    if args.backend == "hf" and not args.cache_only:  # batched GPU generation up front, into the cache
+        todo = [(ex, msgs_for(ex)) for ex in test]
+        todo = [(ex, m, key(ex, m)) for ex, m in todo if key(ex, m) not in cache]
+        if todo:
+            from evals.hf_backend import generate, load
+            model, tok = load(args.model, args.adapter)
+            outs = generate(model, tok, [m for _, m, _ in todo], batch_size=args.batch_size)
+            with open(cache_p, "a", encoding="utf-8") as fh:
+                for (ex, _, k), o in zip(todo, outs):
+                    cache[k] = {"key": k, "id": ex["id"], **o}
+                    fh.write(json.dumps(cache[k], ensure_ascii=False) + "\n")
 
     def work(ex):
-        msgs = ft_messages(ex["text"]) if args.prompt == "ft" else chat_messages(ex["text"], fewshot)
+        msgs = msgs_for(ex)
         k = key(ex, msgs)
         if k in cache:
             return ex, cache[k], True
@@ -205,6 +221,8 @@ def run(args) -> dict:
                     res = call_ollama(msgs, args.model, args.ollama_url, args.num_ctx)
                 elif args.backend == "claude-cli":
                     res = call_claude_cli(msgs, args.model)
+                elif args.backend == "hf":
+                    raise RuntimeError("hf output missing from the batched pre-pass")
                 else:
                     res = call_mock(msgs, ex)
                 break
@@ -255,7 +273,8 @@ def run(args) -> dict:
 
 def parse_args(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", choices=["ollama", "claude-cli", "mock"], required=True)
+    ap.add_argument("--backend", choices=["ollama", "claude-cli", "mock", "hf"], required=True,
+                    help="hf = transformers on GPU/CPU (--model = HF id or path, optional --adapter LoRA dir)")
     ap.add_argument("--model", default="")
     ap.add_argument("--name", required=True)
     ap.add_argument("--data", default=str(ROOT / "data" / "test.jsonl"))
@@ -271,6 +290,8 @@ def parse_args(argv=None):
     ap.add_argument("--postprocess", action="store_true",
                     help="apply postprocess.py (deterministic rules) before scoring; reads the same cache, "
                          "writes eval_<name>+pp.json")
+    ap.add_argument("--adapter", default="", help="hf backend: LoRA adapter directory")
+    ap.add_argument("--batch-size", type=int, default=16, help="hf backend: generation batch size")
     ap.add_argument("--cache-only", action="store_true", help="never call a model; a cache miss is scored as a failed call")
     return ap.parse_args(argv)
 

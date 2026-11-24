@@ -90,6 +90,10 @@ def main():
     ap.add_argument("--results", default=str(ROOT / "results"))
     ap.add_argument("--max-steps", type=int, default=None)
     ap.add_argument("--val-gen-examples", type=int, default=None)
+    ap.add_argument("--epochs", type=float, default=None, help="full mode: overrides the config's epochs")
+    ap.add_argument("--no-qlora", action="store_true", help="full mode: plain fp16 LoRA instead of 4-bit QLoRA")
+    ap.add_argument("--batch-size", type=int, default=None, help="overrides the config's per-device batch size")
+    ap.add_argument("--grad-accum", type=int, default=None, help="overrides the config's gradient accumulation")
     a = ap.parse_args()
 
     import torch
@@ -101,7 +105,13 @@ def main():
     cfg = yaml.safe_load(open(a.config))
     gpu = torch.cuda.is_available()
     mode = a.mode if a.mode != "auto" else ("full" if gpu else "smoke")
-    mc = cfg[mode]
+    mc = dict(cfg[mode])
+    if a.no_qlora:
+        mc["qlora"] = False
+    if a.batch_size:
+        mc["batch_size"] = a.batch_size
+    if a.grad_accum:
+        mc["grad_accum"] = a.grad_accum
     if not gpu:
         torch.set_num_threads(int(os.environ.get("OMP_NUM_THREADS", "1")))
     base = a.base_model or (cfg["base_model_gpu"] if gpu else cfg["base_model_cpu"])
@@ -134,7 +144,8 @@ def main():
     peft_cfg = LoraConfig(r=lc["r"], lora_alpha=lc["alpha"], lora_dropout=lc["dropout"],
                           target_modules=lc["target_modules"], task_type="CAUSAL_LM")
     tc = cfg["train"]
-    steps_kw = {"num_train_epochs": mc["epochs"]} if mode == "full" else {"max_steps": a.max_steps or mc["max_steps"]}
+    steps_kw = ({"num_train_epochs": a.epochs or mc["epochs"]} if mode == "full"
+                else {"max_steps": a.max_steps or mc["max_steps"]})
     eval_kw = ({"eval_strategy": "epoch"} if mode == "full" else
                {"eval_strategy": "steps", "eval_steps": mc["eval_every"]})
     sft = SFTConfig(
@@ -176,7 +187,9 @@ def main():
     (out / "TRAINING_INFO.json").write_text(json.dumps(
         {"mode": mode, "base_model": base if mode == "full" else cfg["base_model_cpu"],
          "steps": trainer.state.global_step, "epochs": trainer.state.epoch,
-         "label": "CPU smoke run, not fully trained" if mode == "smoke" else "full QLoRA run"}, indent=2))
+         "label": ("CPU smoke run, not fully trained" if mode == "smoke"
+                   else "full QLoRA run" if mc.get("qlora") else "full LoRA run (fp16)"),
+         "data_dir": str(a.data_dir), "n_train": len(train_rows)}, indent=2))
     res = Path(a.results); res.mkdir(exist_ok=True)
     (res / "train_log.json").write_text(json.dumps(log, indent=2, default=str))
     plot_loss(log, res / "loss.png")
