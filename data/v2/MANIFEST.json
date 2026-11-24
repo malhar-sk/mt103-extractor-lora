@@ -1,0 +1,33 @@
+{
+  "synthetic": true,
+  "note": "SYNTHETIC format-diverse training data (data/generate_v2.py); not real payments.",
+  "seed": 2026,
+  "n": 6000,
+  "splits": {
+    "train": 4800,
+    "val": 600,
+    "test": 600
+  },
+  "styles": {
+    "chat2": 620,
+    "csv2": 346,
+    "email2": 898,
+    "form2": 550,
+    "letter2": 375,
+    "multi2": 415,
+    "sections2": 430,
+    "swift2": 664,
+    "thread2": 506,
+    "v1": 928,
+    "yaml2": 268
+  },
+  "error_codes": {
+    "INVALID_BIC": 307,
+    "INVALID_CHARGES": 295,
+    "INVALID_CURRENCY": 283,
+    "INVALID_DATE": 276,
+    "MISSING_REQUIRED": 387,
+    "NON_POSITIVE_AMOUNT": 308
+  },
+  "examples_with_errors": 1856
+}

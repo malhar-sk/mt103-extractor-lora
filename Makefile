@@ -29,6 +29,9 @@ data:                    ## regenerate the synthetic dataset (deterministic, see
 data-ood:                ## regenerate the SYNTHETIC out-of-distribution test set (100, seed 20261123)
 	$(PY) data/generate_ood.py --n 100 --seed 20261123
 
+data-v2:                 ## format-diverse SYNTHETIC training data v2 (6000, seed 2026), held out from the OOD set
+	$(PY) data/generate_v2.py --n 6000 --seed 2026 --out data/v2
+
 test:
 	$(PY) -m pytest -q tests
 
