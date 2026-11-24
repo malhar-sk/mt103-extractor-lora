@@ -4,6 +4,11 @@ Copy-paste steps for a Windows laptop with Docker Desktop, Git and Python 3.11. 
 **PowerShell**. `make` targets are shown too, so use them if you have make (WSL or Git Bash with make).
 Without make, run the plain commands underneath each one.
 
+> **Which container tool?** These steps use Docker: Docker Desktop on Windows or macOS, or Docker Engine
+> on Linux. With **Podman**, install `podman-compose` and replace `docker compose` with `podman-compose`
+> (and `docker` with `podman`). OrbStack on macOS works with the commands as written.
+> Details: `docs/adr/0001-container-runtime.md`.
+
 > **What happened on the build machine:** the VPS has **no GPU**, so `make train` ran a **CPU smoke
 > training** (150 steps, about 0.125 epochs, Qwen2.5-0.5B, 88 min). That adapter was merged, converted to
 > GGUF q4_K_M and evaluated. It is labelled "CPU smoke run, not fully trained" everywhere. The full
