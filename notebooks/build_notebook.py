@@ -69,7 +69,10 @@ assert torch.cuda.is_available(), "No GPU: in the notebook settings choose Accel
              md("## Project source (written from the repo)")]
     for f in FILES:
         src = (ROOT / f).read_text(encoding="utf-8")
-        cells.append(code(f"%%writefile mt103/{f}\n{src}"))
+        if src.strip():
+            cells.append(code(f"%%writefile mt103/{f}\n{src}"))
+        else:  # %%writefile refuses an empty body (e.g. __init__.py)
+            cells.append(code(f"open('mt103/{f}', 'w').close()"))
     cells += [md("## Data: SYNTHETIC, regenerated from the seeds, checked against the repo copies"),
               code(f"""
 %cd /kaggle/working/mt103
