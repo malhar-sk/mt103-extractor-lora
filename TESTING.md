@@ -32,8 +32,9 @@ You should see pip finish without errors. If port 21434 or 18000 is taken on you
 ```powershell
 .venv\Scripts\python -m pytest -q tests          # or: make test
 ```
-Expected: `50 passed` (schema, 100% target validity, split overlap, generator determinism, eval on
-5 examples with a mock model, and the `/extract` API with a mocked Ollama).
+Expected: `86 passed` (schema, 100% target validity, split overlap, generator determinism, eval on
+5 examples with a mock model, the `/extract` API with a mocked Ollama, the post-processing rules, and the
+v2 data's held-out checks against the OOD set).
 
 ## 3. Start Ollama + the API, pull the base model
 
@@ -73,10 +74,17 @@ fine-tuned model is in `examples/extract_example.json`.
 
 ## 6. Full training on Kaggle (free GPU)
 
-1. kaggle.com, **Create, New Notebook**, then **File, Import Notebook**, and upload `notebooks/kaggle_train.ipynb`.
-2. **Session options**: Accelerator **GPU T4 x2**, Internet **on**.
-3. **Run All** (about 1 to 1.5 h). Download `adapter.zip` from the Output panel.
-4. Unzip it so that `models\adapter\adapter_config.json` exists.
+Full steps in plain words: **[docs/kaggle.md](docs/kaggle.md)**. In short:
+
+1. One-time: verify your phone on kaggle.com, create an API token (**Settings, API, Create New Token**), put
+   `kaggle.json` in `~/.kaggle/`, and `pip install kaggle`.
+2. `bash kaggle/push.sh` starts the private GPU kernel (trains on `data/v2`, then scores the v1 test, v2 test and
+   OOD sets, raw and with `postprocess.py`). `bash kaggle/push.sh status` follows it.
+3. `bash kaggle/push.sh output` downloads `adapter.zip`, `metrics.json`, `results.zip` into `kaggle/output/`.
+4. Unzip `adapter.zip` into `models/` so that `models/adapter/adapter_config.json` exists.
+
+Without the command line: import `kaggle/kaggle_train.ipynb` in the Kaggle web UI, set Accelerator to GPU and
+Internet on, then **Save & Run All**.
 
 ## 7. Merge, GGUF, serve, and evaluate the fine-tuned model
 
@@ -112,6 +120,17 @@ You should see `results/eval_table_ood.md` (fine-tuned field accuracy about 66.7
 `results/analysis_ood.md` with per-field error types and a per-error-code table (ok / wrong / repaired / copied / null).
 On Windows without `make`, copy the commands under `eval-ood:` and `analyze:` in the Makefile. `make analyze` alone
 works straight after cloning, because the cached outputs are committed.
+
+### 8c. Eval round 3: post-processing rules and the v2 data (no GPU needed)
+
+```bash
+make eval-pp      # re-scores every cached run with postprocess.py; no model calls (--cache-only)
+make data-v2      # regenerates data/v2 (6000, seed 2026); identical to the committed files
+python -m pytest -q tests/test_postprocess.py tests/test_v2_heldout.py
+```
+You should see `results/eval_table.md` and `results/eval_table_ood.md` with `+pp` rows (fine-tuned smoke model
+95.7% on the test split and 69.5% on OOD) and `results/postprocess_delta.md` with **0** field values broken by the
+rules. The held-out tests prove that no v2 text uses an OOD layout, label, date format, phrase or impossible value.
 
 ## 9. Clean up
 

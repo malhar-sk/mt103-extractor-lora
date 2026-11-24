@@ -10,8 +10,9 @@ No cloud and no GPU are needed to run it.
 > [swift-mt103-monitor](https://github.com/malhar-sk/swift-mt103-monitor) simulator. No real payments are used.
 
 > **Training status:** the build machine has no GPU, so the fine-tuned model here is a **CPU smoke run
-> (150 steps, about 0.125 epoch, Qwen2.5-0.5B), not fully trained**. The full QLoRA run (Qwen2.5-1.5B, 3
-> epochs) is ready in `notebooks/kaggle_train.ipynb` for Kaggle's free T4.
+> (150 steps, about 0.125 epoch, Qwen2.5-0.5B, v1 data), not fully trained**. The full run on the new
+> format-diverse data (v2) is one command away on Kaggle's free GPU (`bash kaggle/push.sh`, see
+> [docs/kaggle.md](docs/kaggle.md)) and is **not run yet**: no fine-tuned number below comes from it.
 
 ## Architecture
 
@@ -37,12 +38,15 @@ flowchart LR
 |---|---|
 | `schema.py` | pydantic model of the MT103 fields used: `:20:` sender ref, `:23B:`, `:32A:` (value date, ISO-4217 currency, positive amount), `:50K:`, `:52A:`, `:57A:`, `:59:`, `:70:`, `:71A:` (OUR/SHA/BEN). It validates the BIC format, the date and the currency, plus an `errors` list with machine codes (`INVALID_CURRENCY`, `INVALID_DATE`, `INVALID_BIC`, `NON_POSITIVE_AMOUNT`, `INVALID_CHARGES`, `MISSING_REQUIRED`) |
 | `data/generate.py` | Seeded generator. Five surface styles (email, chat, raw SWIFT block, ops ticket, forwarded mail), typos, Indian number formats (`1,25,000.50`), "2.5 lakh", mixed date formats, optional fields dropped, and impossible values (month 13, `USX`, bad BICs, negative amounts) that must be **flagged in `errors`, not invented**. 657 of 3,000 examples carry errors |
+| `data/generate_v2.py` | Format-diverse training data v2 (6,000): 10 new renderer families (chat logs, SWIFT with distractor tags, forms, CSV, YAML-like, letters, multilingual labels, forwarded threads), label synonyms, random field order, distractor amounts/refs/dates, lakh/crore, typo noise. Strictly held out from the OOD set (`tests/test_v2_heldout.py`) |
+| `data/generate_ood.py` | The out-of-distribution test set (100), unchanged since eval round 2 |
+| `postprocess.py` | Deterministic rules on top of any model: normalise (symbols, lakh, dates), validate (ISO-4217, BIC shape, real date, amount > 0), drop values that are not in the source text, fix contradictory error flags. Tested to leave every gold answer unchanged |
 | `prompts.py` | The long 4-shot prompt for base models and the short prompt the LoRA model is trained with |
 | `evals/run_eval.py` | One eval script for every variant: valid-JSON rate, schema-valid rate, per-field and macro exact match, all-fields-correct, error-flag precision/recall, latency, tokens/sec. Disk cache, resumable |
 | `train/train_lora.py`, `train/config.yaml` | LoRA training with TRL `SFTTrainer`, loss on the completion only, val loss and val generation metrics, loss plot. Auto-selects full QLoRA (GPU) or smoke (CPU) |
-| `notebooks/kaggle_train.ipynb` | Self-contained Kaggle notebook: installs, regenerates and hash-checks the dataset, runs QLoRA on 1.5B, zips the adapter |
+| `kaggle/` (`push.sh`, `kernel-metadata.json`, `kaggle_train.ipynb`) | Kaggle kernel, one command: regenerates and hash-checks the data, trains the LoRA on v2, scores it on the v1 test, v2 test and OOD sets (raw and + rules), saves adapter + metrics. Built from the repo by `notebooks/build_notebook.py` |
 | `train/merge.py`, `serve/Modelfile.tmpl`, `Makefile` (`merge`, `gguf`) | Merge, then llama.cpp GGUF q4_K_M, then `ollama create` |
-| `serve/app.py` | FastAPI `POST /extract {text}` returns validated fields, `errors`, `validation_errors`, latency and tokens/sec. Falls back to the base model (with the few-shot prompt) if the fine-tuned one isn't in Ollama, and says so (`fallback: true`, `note`) |
+| `serve/app.py` | FastAPI `POST /extract {text}` returns validated fields, `errors`, `validation_errors`, latency and tokens/sec. Applies `postprocess.py` by default (`POSTPROCESS=0` turns it off) and also returns the raw `model_output`. Falls back to the base model (with the few-shot prompt) if the fine-tuned one isn't in Ollama, and says so (`fallback: true`, `note`) |
 
 ## Stack
 
@@ -93,6 +97,26 @@ Headline: field accuracy **62.6% → 94.2%** (base → smoke-fine-tuned), valid 
   32% of real errors (`2027-00-12` → `2027-01-12`, `USX` → `USD`). MISSING_REQUIRED is never flagged. The full Kaggle
   run must fix these, with oversampled error examples; RESULTS.md has the breakdown by error code.
 
+**Eval round 3** ([RESULTS.md § Eval round 3](RESULTS.md#eval-round-3-added-2026-11-24-ood-diagnosis-format-diverse-data-post-processing)). No model was retrained;
+every number here is measured on existing model outputs, and the retrained numbers are **pending** the Kaggle run.
+
+- **OOD diagnosis:** the worst OOD fields are 52A (39%), 57A (46%), ordering account (59%), sender reference (61%),
+  charges (62%) and value date (64%). The smoke model picks the BIC slot, the party and the reference by *position*
+  in the v1 templates, not by label.
+- **Deterministic rules** (`postprocess.py`, measured on the cached outputs, 0 field values made worse):
+
+  | | Test split | + rules | OOD | + rules |
+  |---|---|---|---|---|
+  | Fine-tuned 0.5B (CPU smoke): field acc | 94.2% | **95.7%** | 66.7% | **69.5%** |
+  | Fine-tuned 0.5B (CPU smoke): error recall | 7.2% | **53.6%** | 2.3% | **48.8%** |
+  | Base 0.5B, 4-shot: field acc | 62.6% | **69.4%** | 47.5% | **53.8%** |
+
+  The rules fix dates, charges, currencies and contradictory error flags; they cannot fix the positional
+  confusions (52A stays at 39% on OOD). That needs retraining.
+- **Training data v2** (`data/generate_v2.py`, 6,000 examples, 10 new formats), strictly held out from the OOD set
+  (tested). On its v2 test split the current v1-trained smoke model scores 80.4% (150 examples, measured), so v2 is clearly harder than v1's 94.2%.
+- **Pending retraining:** the fine-tuned model trained on v2, on v1 test / v2 test / OOD. `bash kaggle/push.sh`.
+
 ## Limitations
 
 - **Synthetic data.** Real MT103s and real ops emails are far more varied: other languages, scanned PDFs,
@@ -106,9 +130,9 @@ Headline: field accuracy **62.6% → 94.2%** (base → smoke-fine-tuned), valid 
 
 ## What I'd do next
 
-- Run the full QLoRA on Kaggle (1.5B, 3 epochs) and add that row; compare 0.5B vs 1.5B for size versus accuracy.
-- Make training robust to format: shuffle MT103 tag order, lower-case tags, add narrative/table renderers and OCR noise, then re-check on the OOD set (`make eval-ood analyze`).
-- Add a rule-based post-check (ISO-4217, BIC regex, real date, amount > 0, required fields) that turns invalid values into `errors` entries, so error recall no longer depends only on the model.
+- Run the Kaggle kernel (`bash kaggle/push.sh`) and fill in the "pending retraining" rows; then try 1.5B for size versus accuracy.
+- ~~Make training data format-diverse~~ done in round 3 (`data/generate_v2.py`), deliberately **without** the OOD set's own tricks (tag shuffling, pipe tables, OCR swaps), so the OOD score stays an honest test.
+- ~~Rule-based post-check~~ done in round 3 (`postprocess.py`).
 - **Constrained JSON decoding** (Ollama `format` with the JSON schema, or llama.cpp GBNF grammar) so that schema-valid output is guaranteed by construction.
 - Run it on a **Raspberry Pi 5** (q4_K_M 0.5B is about 400 MB) and report tokens/sec there.
 - More fields (33B, 36, 56A, 72, 59F structured addresses), IBAN/BIC directory checks, multi-payment inputs.

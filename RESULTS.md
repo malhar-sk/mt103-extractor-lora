@@ -248,3 +248,100 @@ Full per-model outcome tables: `results/analysis_test.md`, `results/analysis_ood
 `make test` gives **50 passed** (2026-11-23). The 17 new tests (`tests/test_ood_analysis.py`) cover: the OOD set is
 synthetic, schema-valid, reproducible from its seed and disjoint from train; its bad values are disjoint from the
 training lists; plus the field-error classifier and the error-flag outcome logic on hand-built cases.
+
+---
+
+# Eval round 3 (added 2026-11-24): OOD diagnosis, format-diverse data, post-processing
+
+Everything above this line is unchanged. Below: **MEASURED** = computed on the build VPS on 2026-11-24; **PENDING
+RETRAINING** = needs the Kaggle GPU run (`bash kaggle/push.sh`, docs/kaggle.md) and has **not** been measured.
+No model was retrained in this round.
+
+## 1. Which fields fail out of distribution (MEASURED, fine-tuned smoke model, OOD n = 100)
+
+| Field | Test split | OOD | Main OOD failure (from `results/analysis_ood.md`) |
+|---|---|---|---|
+| ordering_institution (52A) | 87.7% | **39.0%** | missed 49×: when only one BIC is given, the model puts it in 57A (position, not label) |
+| account_with_institution (57A) | 80.3% | **46.0%** | the 52A BIC put here (value_from_other_field 26×) |
+| ordering_customer.account | 98.3% | 59.0% | wrong string / beneficiary account swapped in |
+| sender_reference | 99.3% | 61.0% | wrong string 37×: takes the first ID-like token (an account, a cancelled "previous ref") |
+| charges | 90.0% | 62.0% | wrong code 27× for unseen wordings, plus false INVALID_CHARGES flags |
+| value_date | 91.0% | 64.0% | unseen date formats misparsed 24×; impossible dates "repaired" |
+| beneficiary.name / account | 98.7% / 98.3% | 67.0% / 67.0% | ordering and beneficiary parties swapped |
+| all other fields | ≥ 96% | 71–85% | |
+
+By format: `swift_shuffled` 44.9%, `narrative` 71.4%, `pipe_table` 71.7%, `kv_mixed` 76.4%. The common thread is
+that the smoke model learnt **where** a value sits in the v1 templates, not **what label** it carries: the two BIC
+slots, the two parties and the reference are all decided by position.
+
+## 2. What changed
+
+1. **Training data v2** (`data/generate_v2.py`, 6,000 examples, seed 2026, committed in `data/v2/`): 10 new
+   renderer families (chat logs with timestamps, SWIFT with distractor tags `:13C: :33B: :53A: :56A: :71F: :72:`,
+   aligned forms, sectioned forms with multi-line parties, CSV, YAML-like blocks, formal letters, German / French /
+   Spanish / Hindi-Latin labels, forwarded threads with quoted cancelled instructions), v1's styles kept for 16%;
+   6 to 13 label synonyms per field and random field order; a lone 52A is as common as a lone 57A; distractor amounts,
+   references, dates, IFSC codes and phone numbers; `1,25,000/-`, `12.5 lakh`, `1.2 crore`, Swiss and European
+   grouping; typo noise; 30% of examples carry an error (v1: 22%). It also drops v1's lossy `%g` amount rendering
+   (v1 has examples such as `INR 6.94919e+06` labelled 6949192.52, which the text does not support).
+2. **Held-out guarantee.** The OOD generator is untouched and its file is hash-pinned. v2 deliberately does **not**
+   use the OOD set's own perturbations, so a better OOD score after retraining would be real generalisation, not
+   leakage. `tests/test_v2_heldout.py` checks every v2 text: no `| key | value |` tables, no `key=value;` pairs, no
+   shuffled or lower-case SWIFT tags, none of the 28 OOD-only label names, none of the 7 OOD date formats, none of
+   the OOD narrative/remark sentences, none of the OOD impossible values, and no text overlap with OOD or the v1
+   test split. (The detectors were checked on the OOD file itself: they flag 50 to 84 of its 100 texts each.)
+3. **`postprocess.py`**: deterministic rules applied to any model's output, using only the schema and the source
+   text (no dataset lists): normalise symbols / lakh / dates; null and flag impossible values only if they literally
+   occur in the text; null values that are not in the text (BIC, op code, currency, amount, date, account,
+   reference); re-parse an amount whose digits match exactly one amount in the text; drop error flags that contradict
+   a valid value (restoring the value); add INVALID_DATE / MISSING_REQUIRED only when the text has an impossible date
+   or no date / charges wording at all. **Contract, tested:** every gold target of v1 train/val/test, v2 and OOD
+   passes through unchanged. The `/extract` API applies it by default and returns the raw `model_output` too.
+   Honesty note: the rules were written while looking at the test split's cached outputs; the OOD formats were
+   already documented in round 2, so the date grammar covers them like any general date parser would. It has no
+   OOD-specific lists.
+4. **Kaggle kernel** (`kaggle/`): one command trains Qwen2.5-0.5B LoRA on v2 and scores v1 test, v2 test and OOD,
+   raw and with rules. Not run (no Kaggle credentials on the build host; it should run on the owner's account).
+
+## 3. Post-processing on the existing outputs (MEASURED, no new model calls)
+
+Same cached raw outputs as rounds 1 and 2, re-scored with `make eval-pp` (`--postprocess --cache-only`).
+
+| Model | Test split (n=300) | + rules | OOD (n=100) | + rules |
+|---|---|---|---|---|
+| Base Qwen2.5-0.5B, 4-shot: field acc | 62.6% | **69.4%** | 47.5% | **53.8%** |
+| Fine-tuned 0.5B **CPU smoke**: field acc | 94.2% | **95.7%** | 66.7% | **69.5%** |
+| Fine-tuned 0.5B CPU smoke: schema-valid | 83.3% | 100.0% | 36.0% | 88.0% |
+| Fine-tuned 0.5B CPU smoke: error precision / recall | 5.3% / 7.2% | **59.7% / 53.6%** | 2.2% / 2.3% | **42.9% / 48.8%** |
+| Claude Haiku 5.5: field acc | 99.1% | 99.1% | 98.1% | 98.3% |
+
+Field values fixed / broken by the rules (`results/postprocess_delta.md`): fine-tuned 67 / **0** (test) and 43 / **0**
+(OOD); base 303 / 0 and 94 / 0; Haiku 1 / 0 and 3 / 0. On OOD the rules fix value_date (64 → 78%), charges (62 → 72%),
+currency (85 → 93%) and 57A (46 → 53%). They **cannot** fix the structural confusions: 52A stays at 39%, the
+reference at 61%, the parties at 59–67%, and `swift_shuffled` only moves 44.9 → 49.3%. That part needs retraining.
+
+## 4. The existing smoke adapter on the new v2 data (MEASURED, CPU, first 150 of the v2 test split)
+
+This is the "before" row for the Kaggle run: the v1-trained smoke model (Ollama q4_K_M, same prompt) on the new formats.
+Command: `python evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/v2/test.jsonl --limit 150 --name v2-ft-qwen2.5-0.5b-lora` (table: `results/eval_table_v2.md`).
+
+| Model | n | Schema-valid | Field acc (macro) | All fields right | Err precision | Err recall |
+|---|---|---|---|---|---|---|
+| Fine-tuned 0.5B **CPU smoke** (trained on v1) | 150 | 58.7% | **80.4%** | 16.0% | 1.4% | 2.0% |
+| same + rules | 150 | 98.0% | **82.0%** | 18.0% | 36.4% | 48.0% |
+
+Worst fields: 57A 58.7%, 52A 63.3%, charges 66.0%. The v2 test split is not the OOD set (it shares v2's own
+templates), so after retraining it measures in-distribution v2 accuracy; OOD stays the generalisation test. The base
+model on v2 was started but stopped to keep the shared CPU free: **not measured**.
+
+## 5. PENDING RETRAINING (not measured)
+
+| What | Where it will come from |
+|---|---|
+| Fine-tuned 0.5B trained on v2: v1 test, v2 test and OOD field accuracy, error P/R, raw and + rules | `metrics.json` from the Kaggle kernel |
+| Whether v2 closes the OOD gap (especially 52A, reference, parties, `swift_shuffled`) | same |
+| The same adapter as GGUF q4_K_M on CPU via Ollama | `make merge serve eval-ft eval-ood` after the Kaggle run |
+
+## Tests (round 3)
+`make test` gives **86 passed** (2026-11-24): the 50 earlier tests, plus post-processing (gold pass-through on every
+split and hand-built cases for each rule), the API's rule layer, and the v2 held-out checks.

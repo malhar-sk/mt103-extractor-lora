@@ -3,13 +3,13 @@
     "n": 300,
     "valid_json_rate": 1.0,
     "schema_valid_rate": 0.99,
-    "field_accuracy_macro": 0.6940000000000001,
+    "field_accuracy_macro": 0.6937777777777777,
     "field_accuracy": {
       "sender_reference": 0.9666666666666667,
       "bank_operation_code": 0.96,
       "value_date": 0.6833333333333333,
       "currency": 0.9733333333333334,
-      "amount": 0.9,
+      "amount": 0.8966666666666666,
       "ordering_customer.account": 0.56,
       "ordering_customer.name": 0.6366666666666667,
       "ordering_customer.address": 0.44666666666666666,
@@ -21,7 +21,7 @@
       "remittance_info": 0.7,
       "charges": 0.8366666666666667
     },
-    "all_fields_correct_rate": 0.03333333333333333,
+    "all_fields_correct_rate": 0.03,
     "error_precision": 0.4895833333333333,
     "error_recall": 0.6811594202898551,
     "error_detect_precision": 0.5795454545454546,
@@ -898,7 +898,9 @@
       "id": "syn-00524",
       "valid_json": true,
       "schema_valid": true,
-      "fields_wrong": [],
+      "fields_wrong": [
+        "amount"
+      ],
       "err_fp": 0,
       "err_fn": 0
     },
