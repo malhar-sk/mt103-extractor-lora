@@ -1,5 +1,9 @@
 # mt103-extractor-lora
 
+[![ci](https://github.com/malhar-sk/mt103-extractor-lora/actions/workflows/ci.yml/badge.svg)](https://github.com/malhar-sk/mt103-extractor-lora/actions/workflows/ci.yml)
+[![podman-compat](https://github.com/malhar-sk/mt103-extractor-lora/actions/workflows/podman.yml/badge.svg)](https://github.com/malhar-sk/mt103-extractor-lora/actions/workflows/podman.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A LoRA fine-tuned small language model that turns messy payment text (emails, chat messages, half-pasted
 SWIFT blocks, tickets) into **validated MT103 JSON**. It is evaluated against its own base model and a
 Claude Haiku reference, and served locally through Ollama (GGUF q4_K_M) behind a FastAPI `/extract` endpoint.
@@ -153,6 +157,11 @@ Latency p50 8.4 s and about 25 tokens/s on the shared VPS (the smoke model: 9.3 
 - Exact-match scoring is strict: a correct but differently-written address counts as wrong.
 - Latency and tokens/sec were measured on a shared 2 vCPU VPS with Ollama capped at 1 CPU, while other services were running.
 
+## Related projects
+
+- [supplywatch-copilot](https://github.com/malhar-sk/supplywatch-copilot): RAG copilot, LangGraph agent and MCP server over a supply-risk API
+- [fleet-voice-agent](https://github.com/malhar-sk/fleet-voice-agent): multilingual voice agent over a VictoriaMetrics/Grafana device fleet
+
 ## What I'd do next
 
 - ~~Run the Kaggle kernel~~ and ~~re-measure the CPU build~~ done in round 4. Next: try 1.5B for size versus accuracy, mainly to lift 52A/57A on OOD.
@@ -163,10 +172,6 @@ Latency p50 8.4 s and about 25 tokens/s on the shared VPS (the smoke model: 9.3 
 - More fields (33B, 36, 56A, 72, 59F structured addresses), IBAN/BIC directory checks, multi-payment inputs.
 - Harder, adversarial test data written by hand (and a small real, anonymised set if one can be obtained).
 
-## Resume line
-
-"Fine-tuned Qwen2.5 with LoRA for MT103 payment extraction: field accuracy 62.6% → 94.2% vs base (CPU smoke
-run), 100% valid JSON; served locally via Ollama (GGUF q4_K_M) at 22 tok/s on a 1-vCPU budget."
 
 ## Licence
 
