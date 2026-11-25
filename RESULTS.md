@@ -392,8 +392,25 @@ By OOD format (share of the 15 fields right, pooled over the examples of that fo
 - Everything is still synthetic. n=100 for OOD means each style has 23–27 examples, so differences of a few points
   between styles are noise.
 
-**Not measured yet:** the same adapter merged and quantised to GGUF q4_K_M on CPU via Ollama, which is what the API
-serves: `make merge serve eval-ft eval-ood`. The smoke model's CPU rows above are unchanged until then.
+**The served CPU build (MEASURED 2026-11-25, build VPS).** The same adapter merged (`train/merge.py`), converted
+with llama.cpp and quantised to **q4_K_M (398 MB)**, loaded as `mt103-extractor` in the project's Ollama container
+(`cpus: 1.0`), same short prompt. Run names `cpu-ft-qwen2.5-0.5b-lora-v2` and `ood-cpu-ft-qwen2.5-0.5b-lora-v2`, so the
+smoke model's rows are kept as the "before". Command: `python evals/run_eval.py --backend ollama --model mt103-extractor
+--prompt ft --data <split> --name [ood-]cpu-ft-qwen2.5-0.5b-lora-v2` (rules: `make eval-pp`).
+
+| Served CPU build (q4_K_M) | Test split (n=300) | + rules | OOD (n=100) | + rules |
+|---|---|---|---|---|
+| Field acc (macro) | 98.9% | **99.1%** | 87.0% | **89.0%** |
+| fp16 adapter on GPU, for comparison | 99.3% | 99.4% | 89.1% | 90.3% |
+| Valid JSON / schema-valid | 99.7% / 97.3% | 99.7% / 99.7% | 100% / 84.0% | 100% / 99.0% |
+| All 15 fields right | 87.3% | 90.7% | 22.0% | 33.0% |
+| Error precision / recall | 77.3% / 84.1% | 92.9% / 94.2% | 37.5% / 48.8% | 78.6% / 76.7% |
+| OOD 52A / 57A | | | 58% / 75% | 68% / 81% |
+| Latency p50 / tokens per s (1 CPU) | 8.4 s / 24.9 | | 8.4 s / 25.8 | |
+
+Quantisation costs about 0.3 points in distribution and 1–2 points on OOD; with the rules the served model stays within
+1.3 points of the fp16 adapter everywhere. Speed is about the same as the smoke model on the same CPU (8.4 s vs 9.3 s p50;
+same architecture and quantisation, and the VPS is shared, so the difference is not meaningful).
 
 ## Tests (round 3)
 `make test` gives **86 passed** (2026-11-24): the 50 earlier tests, plus post-processing (gold pass-through on every

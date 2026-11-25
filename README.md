@@ -12,7 +12,8 @@ No cloud and no GPU are needed to run it.
 > **Training status:** the adapter in `models/adapter/` is the **full run on the format-diverse v2 data**
 > (Qwen2.5-0.5B, LoRA fp16, 2 epochs, 4,800 examples, 39 min on a Kaggle T4; `bash kaggle/push.sh`, see
 > [docs/kaggle.md](docs/kaggle.md)). Its numbers are in **Eval round 4** below and were measured on the GPU with
-> the fp16 adapter; the quantised CPU build (GGUF q4_K_M via Ollama) has **not** been re-measured yet.
+> the fp16 adapter, and again on the CPU build the API serves (GGUF q4_K_M via Ollama): 99.1% on the test split,
+> 89.0% on OOD, with rules.
 > Rounds 1–3 describe the earlier CPU smoke run (150 steps, v1 data), which is kept in git history.
 
 ## Architecture
@@ -130,27 +131,31 @@ Kaggle T4, fp16 LoRA adapter, same short prompt. "+ rules" is the same raw outpu
 | OOD: 57A account-with institution | 46% | 74% | 78% | 95% |
 | OOD: error precision / recall | 2.2% / 2.3% | 43.4% / 53.5% | 78.6% / 76.7% | 92.9% / 90.7% |
 
+The API serves the same adapter merged and quantised to **GGUF q4_K_M (398 MB) on CPU** via Ollama. Measured there
+(1 CPU, same prompt): field accuracy **98.9% / 99.1% with rules** on the test split and **87.0% / 89.0%** on OOD,
+so quantisation costs about 0.3 points in distribution and 1–2 points on OOD. 52A on OOD: 58% raw, 68% with rules.
+Latency p50 8.4 s and about 25 tokens/s on the shared VPS (the smoke model: 9.3 s, 22 tokens/s).
+
 - **The OOD gap is mostly closed, not gone.** OOD accuracy rose 23 points, and the `swift_shuffled` format (shuffled,
   lower-case tags) went from about 44% to 92%, so the model now reads tags instead of positions. But only 34% of OOD
   messages have every field right (Haiku: 80%), and 52A at 70% is still the weakest field.
 - **In distribution it matches Haiku** (99.4% vs 99.1% on the test split) at 0.5B parameters, on synthetic data.
 - **Error flagging works now:** error recall on the test split went from 7.2% to 88.4% raw and 95.7% with rules.
-- Not measured yet: the same adapter as GGUF q4_K_M on CPU (`make merge serve eval-ft eval-ood`); quantisation can move these numbers a little.
 
 ## Limitations
 
 - **Synthetic data.** Real MT103s and real ops emails are far more varied: other languages, scanned PDFs,
   multi-payment emails, field 33B/36/56A/72, structured 59F addresses, IBAN checksums. These numbers say how well
   a model learns *this generator's* distribution, not production accuracy.
-- **The round 4 numbers are for the fp16 adapter on a GPU.** The CPU path the API serves (GGUF q4_K_M) has not been
-  re-measured with the new adapter, and the published latency/tokens-per-second figures are still the smoke model's.
+- **Quantisation costs a little.** The served CPU build (GGUF q4_K_M) scores 89.0% on OOD with rules, against 90.3%
+  for the fp16 adapter on a GPU. CPU latency (8.4 s p50) was measured on a shared 2 vCPU VPS with Ollama capped at 1 CPU.
 - The test split shares templates and vocabulary with training, so it measures in-distribution generalisation. The OOD set (`data/ood_test.jsonl`) is a first check outside that, but it is still synthetic and small (n=100; 3–12 examples per error code).
 - Exact-match scoring is strict: a correct but differently-written address counts as wrong.
 - Latency and tokens/sec were measured on a shared 2 vCPU VPS with Ollama capped at 1 CPU, while other services were running.
 
 ## What I'd do next
 
-- ~~Run the Kaggle kernel~~ done in round 4. Next: build and re-measure the GGUF q4_K_M CPU version (`make merge serve eval-ft eval-ood`), then try 1.5B for size versus accuracy, mainly to lift 52A/57A on OOD.
+- ~~Run the Kaggle kernel~~ and ~~re-measure the CPU build~~ done in round 4. Next: try 1.5B for size versus accuracy, mainly to lift 52A/57A on OOD.
 - ~~Make training data format-diverse~~ done in round 3 (`data/generate_v2.py`), deliberately **without** the OOD set's own tricks (tag shuffling, pipe tables, OCR swaps), so the OOD score stays an honest test.
 - ~~Rule-based post-check~~ done in round 3 (`postprocess.py`).
 - **Constrained JSON decoding** (Ollama `format` with the JSON schema, or llama.cpp GBNF grammar) so that schema-valid output is guaranteed by construction.

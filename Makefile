@@ -65,6 +65,8 @@ eval-pp:                 ## re-score every cached run with postprocess.py (deter
 	$(PY) evals/run_eval.py --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --adapter models/adapter --prompt ft --data data/test.jsonl --name kaggle-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only
 	$(PY) evals/run_eval.py --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --adapter models/adapter --prompt ft --data data/v2/test.jsonl --name v2-kaggle-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only
 	$(PY) evals/run_eval.py --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --adapter models/adapter --prompt ft --data data/ood_test.jsonl --name ood-kaggle-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/test.jsonl --name cpu-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only
+	$(PY) evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-cpu-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only
 	$(PY) evals/pp_delta.py
 	$(PY) evals/report.py
 
