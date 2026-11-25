@@ -37,7 +37,7 @@
     "fewshot": false,
     "prompt": "ft",
     "data": "data/ood_test.jsonl",
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "command": "evals/run_eval.py --backend ollama --model mt103-extractor --prompt ft --data data/ood_test.jsonl --name ood-ft-qwen2.5-0.5b-lora --postprocess --cache-only"
   },
   "per_example": [

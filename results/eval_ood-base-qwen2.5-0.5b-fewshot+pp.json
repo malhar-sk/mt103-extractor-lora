@@ -37,7 +37,7 @@
     "fewshot": true,
     "prompt": "full",
     "data": "data/ood_test.jsonl",
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "command": "evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --data data/ood_test.jsonl --name ood-base-qwen2.5-0.5b-fewshot --postprocess --cache-only"
   },
   "per_example": [

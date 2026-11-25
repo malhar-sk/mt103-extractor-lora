@@ -9,10 +9,11 @@ No cloud and no GPU are needed to run it.
 > record carries `"synthetic": true`. Bank BICs and the reference pattern come from the author's
 > [swift-mt103-monitor](https://github.com/malhar-sk/swift-mt103-monitor) simulator. No real payments are used.
 
-> **Training status:** the build machine has no GPU, so the fine-tuned model here is a **CPU smoke run
-> (150 steps, about 0.125 epoch, Qwen2.5-0.5B, v1 data), not fully trained**. The full run on the new
-> format-diverse data (v2) is one command away on Kaggle's free GPU (`bash kaggle/push.sh`, see
-> [docs/kaggle.md](docs/kaggle.md)) and is **not run yet**: no fine-tuned number below comes from it.
+> **Training status:** the adapter in `models/adapter/` is the **full run on the format-diverse v2 data**
+> (Qwen2.5-0.5B, LoRA fp16, 2 epochs, 4,800 examples, 39 min on a Kaggle T4; `bash kaggle/push.sh`, see
+> [docs/kaggle.md](docs/kaggle.md)). Its numbers are in **Eval round 4** below and were measured on the GPU with
+> the fp16 adapter; the quantised CPU build (GGUF q4_K_M via Ollama) has **not** been re-measured yet.
+> Rounds 1–3 describe the earlier CPU smoke run (150 steps, v1 data), which is kept in git history.
 
 ## Architecture
 
@@ -97,8 +98,8 @@ Headline: field accuracy **62.6% → 94.2%** (base → smoke-fine-tuned), valid 
   32% of real errors (`2027-00-12` → `2027-01-12`, `USX` → `USD`). MISSING_REQUIRED is never flagged. The full Kaggle
   run must fix these, with oversampled error examples; RESULTS.md has the breakdown by error code.
 
-**Eval round 3** ([RESULTS.md § Eval round 3](RESULTS.md#eval-round-3-added-2026-11-24-ood-diagnosis-format-diverse-data-post-processing)). No model was retrained;
-every number here is measured on existing model outputs, and the retrained numbers are **pending** the Kaggle run.
+**Eval round 3** ([RESULTS.md § Eval round 3](RESULTS.md#eval-round-3-added-2026-11-24-ood-diagnosis-format-diverse-data-post-processing)). No model was retrained in
+this round; every number here is measured on the smoke model's existing outputs. The retrained model is round 4.
 
 - **OOD diagnosis:** the worst OOD fields are 52A (39%), 57A (46%), ordering account (59%), sender reference (61%),
   charges (62%) and value date (64%). The smoke model picks the BIC slot, the party and the reference by *position*
@@ -115,22 +116,41 @@ every number here is measured on existing model outputs, and the retrained numbe
   confusions (52A stays at 39% on OOD). That needs retraining.
 - **Training data v2** (`data/generate_v2.py`, 6,000 examples, 10 new formats), strictly held out from the OOD set
   (tested). On its v2 test split the current v1-trained smoke model scores 80.4% (150 examples, measured), so v2 is clearly harder than v1's 94.2%.
-- **Pending retraining:** the fine-tuned model trained on v2, on v1 test / v2 test / OOD. `bash kaggle/push.sh`.
+- **Retraining on v2:** done, see round 4.
+
+**Eval round 4: full training on v2** ([RESULTS.md § 5](RESULTS.md#5-retrained-on-v2-measured-2026-11-24-kaggle-t4)).
+Kaggle T4, fp16 LoRA adapter, same short prompt. "+ rules" is the same raw output through `postprocess.py`.
+
+| Field accuracy (macro) | Smoke run (v1) | **Full run (v2)** | Full run + rules | Claude Haiku 5.5 + rules |
+|---|---|---|---|---|
+| Test split (n=300) | 94.2% | **99.3%** | **99.4%** | 99.1% |
+| v2 test split (n=600; smoke: first 150) | 80.4% | **98.8%** | **99.0%** | not measured |
+| OOD set (n=100) | 66.7% | **89.1%** | **90.3%** | 98.3% |
+| OOD: 52A ordering institution | 39% | 62% | 70% | 96% |
+| OOD: 57A account-with institution | 46% | 74% | 78% | 95% |
+| OOD: error precision / recall | 2.2% / 2.3% | 43.4% / 53.5% | 78.6% / 76.7% | 92.9% / 90.7% |
+
+- **The OOD gap is mostly closed, not gone.** OOD accuracy rose 23 points, and the `swift_shuffled` format (shuffled,
+  lower-case tags) went from about 44% to 92%, so the model now reads tags instead of positions. But only 34% of OOD
+  messages have every field right (Haiku: 80%), and 52A at 70% is still the weakest field.
+- **In distribution it matches Haiku** (99.4% vs 99.1% on the test split) at 0.5B parameters, on synthetic data.
+- **Error flagging works now:** error recall on the test split went from 7.2% to 88.4% raw and 95.7% with rules.
+- Not measured yet: the same adapter as GGUF q4_K_M on CPU (`make merge serve eval-ft eval-ood`); quantisation can move these numbers a little.
 
 ## Limitations
 
 - **Synthetic data.** Real MT103s and real ops emails are far more varied: other languages, scanned PDFs,
   multi-payment emails, field 33B/36/56A/72, structured 59F addresses, IBAN checksums. These numbers say how well
   a model learns *this generator's* distribution, not production accuracy.
-- **The fine-tuned model is a CPU smoke run** (300 training examples seen, 0.125 epoch). A full GPU run should do
-  better, especially on error flagging, which the smoke model mostly hasn't learnt yet.
+- **The round 4 numbers are for the fp16 adapter on a GPU.** The CPU path the API serves (GGUF q4_K_M) has not been
+  re-measured with the new adapter, and the published latency/tokens-per-second figures are still the smoke model's.
 - The test split shares templates and vocabulary with training, so it measures in-distribution generalisation. The OOD set (`data/ood_test.jsonl`) is a first check outside that, but it is still synthetic and small (n=100; 3–12 examples per error code).
 - Exact-match scoring is strict: a correct but differently-written address counts as wrong.
 - Latency and tokens/sec were measured on a shared 2 vCPU VPS with Ollama capped at 1 CPU, while other services were running.
 
 ## What I'd do next
 
-- Run the Kaggle kernel (`bash kaggle/push.sh`) and fill in the "pending retraining" rows; then try 1.5B for size versus accuracy.
+- ~~Run the Kaggle kernel~~ done in round 4. Next: build and re-measure the GGUF q4_K_M CPU version (`make merge serve eval-ft eval-ood`), then try 1.5B for size versus accuracy, mainly to lift 52A/57A on OOD.
 - ~~Make training data format-diverse~~ done in round 3 (`data/generate_v2.py`), deliberately **without** the OOD set's own tricks (tag shuffling, pipe tables, OCR swaps), so the OOD score stays an honest test.
 - ~~Rule-based post-check~~ done in round 3 (`postprocess.py`).
 - **Constrained JSON decoding** (Ollama `format` with the JSON schema, or llama.cpp GBNF grammar) so that schema-valid output is guaranteed by construction.

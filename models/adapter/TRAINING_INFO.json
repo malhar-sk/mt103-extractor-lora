@@ -1,7 +1,9 @@
 {
-  "mode": "smoke",
+  "mode": "full",
   "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
-  "steps": 150,
-  "epochs": 0.125,
-  "label": "CPU smoke run, not fully trained"
+  "steps": 600,
+  "epochs": 2.0,
+  "label": "full LoRA run (fp16)",
+  "data_dir": "data/v2",
+  "n_train": 4800
 }

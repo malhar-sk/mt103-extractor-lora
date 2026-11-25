@@ -253,9 +253,8 @@ training lists; plus the field-error classifier and the error-flag outcome logic
 
 # Eval round 3 (added 2026-11-24): OOD diagnosis, format-diverse data, post-processing
 
-Everything above this line is unchanged. Below: **MEASURED** = computed on the build VPS on 2026-11-24; **PENDING
-RETRAINING** = needs the Kaggle GPU run (`bash kaggle/push.sh`, docs/kaggle.md) and has **not** been measured.
-No model was retrained in this round.
+Everything above this line is unchanged. Below: **MEASURED** = computed on the build VPS on 2026-11-24. No model was
+retrained in sections 1–4; section 5 (added 2026-11-25) is the retrained model from the Kaggle GPU run.
 
 ## 1. Which fields fail out of distribution (MEASURED, fine-tuned smoke model, OOD n = 100)
 
@@ -301,7 +300,7 @@ slots, the two parties and the reference are all decided by position.
    already documented in round 2, so the date grammar covers them like any general date parser would. It has no
    OOD-specific lists.
 4. **Kaggle kernel** (`kaggle/`): one command trains Qwen2.5-0.5B LoRA on v2 and scores v1 test, v2 test and OOD,
-   raw and with rules. Not run (no Kaggle credentials on the build host; it should run on the owner's account).
+   raw and with rules. Run on 2026-11-24 on the owner's account: results in section 5.
 
 ## 3. Post-processing on the existing outputs (MEASURED, no new model calls)
 
@@ -334,13 +333,67 @@ Worst fields: 57A 58.7%, 52A 63.3%, charges 66.0%. The v2 test split is not the 
 templates), so after retraining it measures in-distribution v2 accuracy; OOD stays the generalisation test. The base
 model on v2 was started but stopped to keep the shared CPU free: **not measured**.
 
-## 5. PENDING RETRAINING (not measured)
+## 5. Retrained on v2 (MEASURED 2026-11-24, Kaggle T4)
 
-| What | Where it will come from |
-|---|---|
-| Fine-tuned 0.5B trained on v2: v1 test, v2 test and OOD field accuracy, error P/R, raw and + rules | `metrics.json` from the Kaggle kernel |
-| Whether v2 closes the OOD gap (especially 52A, reference, parties, `swift_shuffled`) | same |
-| The same adapter as GGUF q4_K_M on CPU via Ollama | `make merge serve eval-ft eval-ood` after the Kaggle run |
+**Run:** `bash kaggle/push.sh` (kernel version 2; version 1 stopped in its first minute on a notebook bug, fixed in
+`e59bdcb`). Qwen2.5-0.5B-Instruct, LoRA r16, **fp16 (no QLoRA)**, batch 4 × grad-accum 4, 2 epochs = 600 steps on
+the 4,800 v2 training examples, **2,337 s (39 min) on one Tesla T4**. The notebook regenerated all data from the seeds
+and checked it against the repo copies by SHA-256 before training. Validation during training (50 val examples):
+field acc 98.1% after epoch 1, 99.1% after epoch 2. Training log: `results/kaggle_train_log.json`, `results/kaggle_loss.png`.
+
+**Evaluation:** `evals/run_eval.py --backend hf --adapter models/adapter --prompt ft` on the GPU (fp16 adapter,
+batched generation, so the latency column in the tables is not comparable with the CPU rows). The raw outputs are
+cached in `results/cache/*kaggle-ft*.jsonl`, and re-scoring them on the build VPS with `make eval-pp` reproduces
+every number below exactly (checked 2026-11-25).
+
+| Model | Test split (n=300) | v2 test (n=600) | OOD (n=100) |
+|---|---|---|---|
+| Fine-tuned 0.5B **CPU smoke** (v1), field acc | 94.2% | 80.4% (first 150) | 66.7% |
+| same + rules | 95.7% | 82.0% | 69.5% |
+| **Fine-tuned 0.5B, full run on v2**, field acc | **99.3%** | **98.8%** | **89.1%** |
+| **same + rules** | **99.4%** | **99.0%** | **90.3%** |
+| Claude Haiku 5.5 + rules (reference) | 99.1% | not measured | 98.3% |
+
+| Full run on v2 | Test split | + rules | v2 test | + rules | OOD | + rules |
+|---|---|---|---|---|---|---|
+| Schema-valid | 98.0% | 100.0% | 97.2% | 100.0% | 91.0% | 98.0% |
+| All 15 fields right | 89.3% | 91.3% | 86.8% | 89.8% | 28.0% | 34.0% |
+| Error precision | 78.2% | 97.1% | 85.9% | 95.4% | 43.4% | 78.6% |
+| Error recall | 88.4% | 95.7% | 85.5% | 95.9% | 53.5% | 76.7% |
+
+**Did v2 close the OOD gap?** Mostly. The fields that failed by position in round 3 (OOD, raw → full run raw, + rules):
+
+| OOD field | Smoke | Smoke + rules | Full run | Full run + rules | Haiku + rules |
+|---|---|---|---|---|---|
+| sender_reference | 61% | 61% | 94% | 94% | 100% |
+| value_date | 64% | 78% | 79% | 82% | 99% |
+| ordering_customer.account | 59% | 59% | 86% | 86% | 97% |
+| 52A ordering_institution | 39% | 39% | 62% | **70%** | 96% |
+| 57A account_with_institution | 46% | 53% | 74% | **78%** | 95% |
+| charges | 62% | 72% | 99% | 99% | 97% |
+
+By OOD format (share of the 15 fields right, pooled over the examples of that format; recomputed from
+`per_example`, so the smoke figures differ slightly from section 1's per-field average):
+
+| OOD style | n | Smoke | Smoke + rules | Full run | Full run + rules | Haiku + rules |
+|---|---|---|---|---|---|---|
+| `kv_mixed` | 26 | 76.4% | 79.2% | 89.0% | 89.7% | 98.7% |
+| `narrative` | 27 | 71.4% | 73.1% | 87.4% | 88.6% | 97.0% |
+| `pipe_table` | 24 | 71.7% | 74.4% | 88.3% | 89.7% | 99.2% |
+| `swift_shuffled` | 23 | 43.8% | 48.1% | **91.9%** | **93.6%** | 98.6% |
+
+**Reading it honestly:**
+- `swift_shuffled` going from about 44% to 92% is the clearest sign that the model now maps fields by tag, not by
+  position. v2 never contains shuffled tags (the held-out test checks this), so this is generalisation.
+- In distribution the 0.5B model now matches Haiku (99.4% vs 99.1% with rules). On OOD it is still 8 points behind,
+  and only 34% of OOD messages are fully right (Haiku 80%). The two bank fields remain the weak spot: 52A at 70%.
+- The rules add little to field accuracy now (+0.1 to +1.2 points) but a lot to error precision (43% → 79% on OOD),
+  because they remove contradictory flags.
+- Everything is still synthetic. n=100 for OOD means each style has 23–27 examples, so differences of a few points
+  between styles are noise.
+
+**Not measured yet:** the same adapter merged and quantised to GGUF q4_K_M on CPU via Ollama, which is what the API
+serves: `make merge serve eval-ft eval-ood`. The smoke model's CPU rows above are unchanged until then.
 
 ## Tests (round 3)
 `make test` gives **86 passed** (2026-11-24): the 50 earlier tests, plus post-processing (gold pass-through on every

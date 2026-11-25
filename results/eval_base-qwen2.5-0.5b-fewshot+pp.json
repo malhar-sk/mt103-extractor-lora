@@ -37,7 +37,7 @@
     "fewshot": true,
     "prompt": "full",
     "data": "/home/jivha/builds/mt103-extractor-lora/data/test.jsonl",
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "command": "evals/run_eval.py --backend ollama --model qwen2.5:0.5b-instruct --fewshot --name base-qwen2.5-0.5b-fewshot --postprocess --cache-only"
   },
   "per_example": [

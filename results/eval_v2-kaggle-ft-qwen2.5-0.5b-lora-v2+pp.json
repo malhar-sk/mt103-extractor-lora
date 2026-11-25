@@ -1,0 +1,4995 @@
+{
+  "summary": {
+    "n": 600,
+    "valid_json_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "field_accuracy_macro": 0.990111111111111,
+    "field_accuracy": {
+      "sender_reference": 1.0,
+      "bank_operation_code": 1.0,
+      "value_date": 0.9716666666666667,
+      "currency": 1.0,
+      "amount": 0.9983333333333333,
+      "ordering_customer.account": 0.9916666666666667,
+      "ordering_customer.name": 0.99,
+      "ordering_customer.address": 0.9416666666666667,
+      "ordering_institution": 0.995,
+      "account_with_institution": 0.9916666666666667,
+      "beneficiary.account": 0.9916666666666667,
+      "beneficiary.name": 0.99,
+      "beneficiary.address": 0.9933333333333333,
+      "remittance_info": 0.9983333333333333,
+      "charges": 0.9983333333333333
+    },
+    "all_fields_correct_rate": 0.8983333333333333,
+    "error_precision": 0.9536082474226805,
+    "error_recall": 0.9585492227979274,
+    "error_detect_precision": 0.9637305699481865,
+    "error_detect_recall": 0.9637305699481865,
+    "latency_mean_s": 0.8464388906955719,
+    "latency_p50_s": 0.8289878964424133,
+    "latency_p95_s": 0.9156376421451569,
+    "tokens_per_sec": 208.2410617835467,
+    "name": "v2-kaggle-ft-qwen2.5-0.5b-lora-v2+pp",
+    "postprocess": true,
+    "backend": "hf",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "fewshot": false,
+    "prompt": "ft",
+    "data": "data/v2/test.jsonl",
+    "date": "2026-11-25",
+    "command": "evals/run_eval.py --backend hf --model Qwen/Qwen2.5-0.5B-Instruct --adapter models/adapter --prompt ft --data data/v2/test.jsonl --name v2-kaggle-ft-qwen2.5-0.5b-lora-v2 --postprocess --cache-only"
+  },
+  "per_example": [
+    {
+      "id": "v2-00011",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00022",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-00043",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00044",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00050",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00067",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00103",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00106",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00111",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00113",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00120",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00124",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00130",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00136",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00140",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00155",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00157",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00191",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00207",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00210",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00222",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00231",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00232",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00244",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00255",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00267",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00271",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00289",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00297",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00300",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00311",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00328",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00329",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00335",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00353",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00376",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00384",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00412",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00443",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00449",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00450",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00472",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00485",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00506",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00547",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00553",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00558",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00559",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00566",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00573",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00592",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00594",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00608",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00620",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00623",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00627",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00628",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00636",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00643",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00651",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00673",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00679",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00687",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00688",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00694",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00699",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00707",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00715",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00734",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00738",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00743",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00749",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00764",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00769",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00780",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00782",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00791",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00801",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00804",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00809",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00829",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00830",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00839",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00840",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00856",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00887",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00925",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00951",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00967",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00968",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-00991",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01018",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01021",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01024",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01033",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01054",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01062",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01072",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01099",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01106",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01107",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01108",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01120",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01136",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01140",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01142",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01143",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01144",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01155",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01163",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-01165",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01193",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01195",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01213",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01234",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01236",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01239",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01249",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01279",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01282",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01288",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01292",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01318",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01323",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01326",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01337",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01343",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01346",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01354",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01381",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01394",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01396",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01404",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01405",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01416",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01423",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01433",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01442",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "beneficiary.account",
+        "beneficiary.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01443",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01452",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01466",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01475",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01484",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01489",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01502",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_institution",
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01503",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01511",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01520",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01523",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01543",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01564",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01567",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01568",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01575",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01577",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01586",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01589",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01593",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01609",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01610",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01617",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01619",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01624",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01632",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01635",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01649",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01670",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01680",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01681",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01682",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01709",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01715",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01735",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01742",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01743",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01752",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01782",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01797",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01840",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01847",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01865",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01871",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01882",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01884",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01891",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01953",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01959",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01960",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01968",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01980",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01990",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01993",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-01999",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02005",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02014",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02059",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02063",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02066",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02078",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02082",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02086",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02087",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02089",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02090",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02093",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02103",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02111",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02114",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02128",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02164",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02189",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02196",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02203",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02214",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02217",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02218",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02222",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02235",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02237",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02240",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02250",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02266",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02320",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "beneficiary.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02324",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02335",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02336",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02339",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02344",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02359",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02366",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02367",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02381",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02390",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02397",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02413",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02421",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02433",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02440",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02469",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02473",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02475",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02479",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02481",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02485",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02504",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02512",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02541",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02551",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "remittance_info"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02557",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02562",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02581",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02583",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02602",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02629",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02641",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02664",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02669",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02674",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02697",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02706",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02721",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02726",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02738",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02743",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02744",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02760",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02765",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02777",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02798",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02825",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02831",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02835",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02844",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02848",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02860",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-02883",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02901",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02906",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02916",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02933",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02952",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02954",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02960",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02977",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02986",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02995",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-02997",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03005",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03010",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03018",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03019",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03044",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03053",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03059",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03060",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03062",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03097",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-03109",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03111",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03115",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03116",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03124",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03134",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03142",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03145",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03160",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03162",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03163",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03167",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03177",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03178",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03189",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "charges"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-03205",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03206",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03207",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03209",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03210",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03215",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03218",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03220",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03225",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03240",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03260",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03265",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03266",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03268",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03283",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "amount"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-03296",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03299",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03316",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03324",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03326",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03354",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03363",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03369",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03374",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03377",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03395",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03417",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03419",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03430",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03472",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03483",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03485",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03503",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03508",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03510",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03513",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03527",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03538",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03549",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03576",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03584",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03609",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03612",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03636",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03643",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03648",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03664",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03665",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03690",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03693",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03710",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03711",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03717",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03719",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03737",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03738",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03746",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03759",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03760",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03772",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03777",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03788",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03797",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03801",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03807",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03817",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03819",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03835",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03838",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03860",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03885",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03895",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03898",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03899",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03911",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03915",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03920",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03943",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03951",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03954",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03961",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03978",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03981",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03984",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-03998",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04006",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04010",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04014",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04021",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04038",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04041",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04058",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04065",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04067",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04074",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04079",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04087",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04100",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "ordering_customer.address"
+      ],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04105",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04108",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.name",
+        "ordering_customer.address",
+        "ordering_institution",
+        "account_with_institution",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04111",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04117",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04118",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04122",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04144",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04153",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04171",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04185",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04189",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04200",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04203",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04210",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04226",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04240",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04241",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04247",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04259",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04261",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04266",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04269",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04273",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04297",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04298",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04302",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04307",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04319",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04328",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04329",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04347",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04352",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04358",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04373",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04406",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04410",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04479",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04482",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04485",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04492",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04501",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04513",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04522",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.name"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04526",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04569",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04589",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04593",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04594",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04599",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04612",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04625",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04641",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04645",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04646",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04652",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04653",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04667",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04674",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04689",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04694",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date",
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-04700",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04707",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04732",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04736",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04745",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04759",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04770",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04776",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04777",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04794",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04796",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04816",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04817",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04824",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04828",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04837",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04838",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04844",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04856",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04861",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04870",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04874",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04876",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04878",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04886",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04897",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04900",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04905",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04959",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04970",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04972",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04975",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04982",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04986",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04994",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-04997",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05011",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05015",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05027",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05042",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05046",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05078",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05114",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05125",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05129",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05135",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05146",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05162",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05172",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05176",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05184",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05190",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05199",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05214",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05216",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05236",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05238",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05239",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05246",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05257",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05261",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05269",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05280",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05303",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05309",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05328",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05332",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05339",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05347",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05352",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05356",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05367",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05370",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05374",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05391",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05398",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05403",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05406",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05407",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05408",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05411",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05419",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05420",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05421",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 1
+    },
+    {
+      "id": "v2-05432",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05439",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05444",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05459",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05461",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05464",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05466",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05468",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05470",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05496",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "value_date"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05525",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05544",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05549",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05565",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05575",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05580",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05612",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05626",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05639",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05681",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05685",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.account",
+        "ordering_customer.address",
+        "beneficiary.account",
+        "beneficiary.name",
+        "beneficiary.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05695",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05701",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05721",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05733",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05735",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05736",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05750",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05761",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05768",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05769",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05800",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "account_with_institution"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05820",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05824",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 1,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05833",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05857",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [
+        "ordering_customer.address"
+      ],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05868",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05872",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05897",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05916",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05918",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05946",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05957",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05968",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05973",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    },
+    {
+      "id": "v2-05999",
+      "valid_json": true,
+      "schema_valid": true,
+      "fields_wrong": [],
+      "err_fp": 0,
+      "err_fn": 0
+    }
+  ]
+}

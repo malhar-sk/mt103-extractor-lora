@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT))
 from evals.run_eval import SCORED_FIELDS  # noqa: E402
 
 ORDER = ["base-qwen2.5-0.5b-fewshot", "base-qwen2.5-0.5b-fewshot+pp", "ft-qwen2.5-0.5b-lora", "ft-qwen2.5-0.5b-lora+pp",
+         "kaggle-ft-qwen2.5-0.5b-lora-v2", "kaggle-ft-qwen2.5-0.5b-lora-v2+pp",
          "api-claude-haiku-5-5-fewshot", "api-claude-haiku-5-5-fewshot+pp"]
 LABEL = {"base-qwen2.5-0.5b-fewshot": "Base Qwen2.5-0.5B-Instruct (Ollama q4_K_M, 4-shot prompt)",
          "ft-qwen2.5-0.5b-lora": "Fine-tuned Qwen2.5-0.5B LoRA (GGUF q4_K_M, short prompt). **CPU smoke run, not fully trained**",
@@ -15,7 +16,9 @@ LABEL = {"base-qwen2.5-0.5b-fewshot": "Base Qwen2.5-0.5B-Instruct (Ollama q4_K_M
 LABEL.update({
     "base-qwen2.5-0.5b-fewshot+pp": "Base Qwen2.5-0.5B, 4-shot **+ rules** (`postprocess.py`, same raw outputs)",
     "ft-qwen2.5-0.5b-lora+pp": "Fine-tuned 0.5B LoRA (CPU smoke run) **+ rules** (`postprocess.py`, same raw outputs)",
-    "api-claude-haiku-5-5-fewshot+pp": "Claude Haiku 5.5 **+ rules** (`postprocess.py`, same raw outputs)"})
+    "api-claude-haiku-5-5-fewshot+pp": "Claude Haiku 5.5 **+ rules** (`postprocess.py`, same raw outputs)",
+    "kaggle-ft-qwen2.5-0.5b-lora-v2": "Fine-tuned 0.5B LoRA, **full run on v2 data** (Kaggle T4, fp16 adapter, short prompt; batched GPU, so latency is not comparable)",
+    "kaggle-ft-qwen2.5-0.5b-lora-v2+pp": "Fine-tuned 0.5B LoRA, full run on v2 **+ rules** (`postprocess.py`, same raw outputs)"})
 
 
 def pct(x):

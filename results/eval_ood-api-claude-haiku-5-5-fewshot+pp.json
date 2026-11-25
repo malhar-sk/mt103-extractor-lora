@@ -37,7 +37,7 @@
     "fewshot": true,
     "prompt": "full",
     "data": "data/ood_test.jsonl",
-    "date": "2026-11-24",
+    "date": "2026-11-25",
     "command": "evals/run_eval.py --backend claude-cli --model claude-haiku-5-5 --fewshot --data data/ood_test.jsonl --name ood-api-claude-haiku-5-5-fewshot --postprocess --cache-only"
   },
   "per_example": [
